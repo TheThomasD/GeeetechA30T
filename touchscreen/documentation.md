@@ -145,10 +145,14 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Control|Filament|Unload on (depends on selected extruder, see above)||`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S3*120`|
 |Control|Filament|Unload off||`N-0 M2105 S4*127`|
 |Control|**Speed**||||
-|Control|Speed|Speed up (sent value depends on shown value)||`N-0 M220 S1*76`|
+|Control|Speed|Speed up (sent value = shown value)||`N-0 M220 S1*76`|
 |Control|Speed|Speed down||no visible effect|
 |Control|Speed|Fan on||`N-0 M106 P0 S255*8`|
 |Control|Speed|Fan off||`N-0 M106 P0 S0*10`|
 |Control|Speed|Fan up||same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
 |Control|Speed|Fan down||same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
+|**Printing**|||||
+|**Setting**|||||
 |**Bar chart button**||||`N-0 M105*10 N-0 M27*59`|
+|**Main menu button**||||return to top menu|
+|**Return button**||||return to previous screen|
