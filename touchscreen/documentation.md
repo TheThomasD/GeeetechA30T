@@ -130,7 +130,25 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Control|Leveling|auto-level|3D Touch - up 0.05mm|`N-0 M2120 P3 S3*60`|
 |Control|Leveling|auto-level|3D Touch - down 0.05mm|`N-0 M2120 P4 S3*59`|
 |Control|Leveling|auto-level|Save (value was -0.50)|`N-0 M2120 P1 S2*63 N-0 M2120 P2 S-0.50*56`|
-
-
-
-
+|Control|**Filament**||||
+|Control|Filament|Extruder 1||`N-0 M165 A1.0 B0.0 C0.0*67`|
+|Control|Filament|Extruder 2||`N-0 M165 A0.0 B1.0 C0.0*67`|
+|Control|Filament|Extruder 1||`N-0 M165 A0.0 B0.0 C1.0*67`|
+|Control|Filament|Hotend on||`N-0 M104 S200.0*84`|
+|Control|Filament|Hotend up||same as above, but with increased temp value|
+|Control|Filament|Hotend down||same as above, but with decreased temp value|
+|Control|Filament|Hotend off||`N-0 M104 S0.0*86`|
+|Control|Filament|Clean on||`N-0 M2105 S5*126`|
+|Control|Filament|Clean off||`N-0 M2105 S4*127`|
+|Control|Filament|Load on (depends on selected extruder, see above)||`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S2*121`|
+|Control|Filament|Load off||`N-0 M2105 S4*127`|
+|Control|Filament|Unload on (depends on selected extruder, see above)||`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S3*120`|
+|Control|Filament|Unload off||`N-0 M2105 S4*127`|
+|Control|**Speed**||||
+|Control|Speed|Speed up (sent value depends on shown value)||`N-0 M220 S1*76`|
+|Control|Speed|Speed down||no visible effect|
+|Control|Speed|Fan on||`N-0 M106 P0 S255*8`|
+|Control|Speed|Fan off||`N-0 M106 P0 S0*10`|
+|Control|Speed|Fan up||same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
+|Control|Speed|Fan down||same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
+|**Bar chart button**||||`N-0 M105*10 N-0 M27*59`|
