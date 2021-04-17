@@ -10,9 +10,13 @@ Hence, I want to analyze the communication between the touch screen board and th
 
 ## General Information
 
-The screen has it's own board (see picture) and is labeled as *Smartto\_LCD 3.2 VER2.1 FR4 1.6mm 2019-10-31"*. The main processor is an ARM chip labeled *STM32F103 VET6*. This is the same processor as the main board has.
+The screen has it's own board (see picture) and is labeled as *Smartto\_LCD 3.2 VER2.1 FR4 1.6mm 2019-10-31"*.
 
-The connector labeled as *J2* seems to be a serial connector as it is connected to the main board via that connector. There are 4 pins and on the main board the pins are labeled *5V*, *RX*, *TX* and *GND* (see picture). The wires of the cable connecting the two ports are running straight. However, the connectors on each side are inverse (see picture).
+![picture][./Touch%20screen.JPG]
+
+The main processor is an ARM chip labeled *STM32F103 VET6*. This is the same processor as the main board has.
+
+The connector labeled as *J2* seems to be a serial connector as it is connected to the main board via that connector. There are 4 pins and on the main board the pins are labeled *5V*, *RX*, *TX* and *GND* (see picture). The wires of the cable connecting the two ports are running straight. However, the connectors on each side are inverse to each other (see picture).
 
 I bought three USB to TTL adapters via the Internet to be able to connect to the touch screen and to also be able to connect to the control board and the touch screen concurrently to "listen in" on the communication that is happening (see picture). The adapters have an FT232RL chip, but actually I don't know whether this is really required. There are cheaper ones, but for about 10€ for all of them the price was OK for me. I use a break-out board that came with my Raspberry Pi to easily connect the adapter with the boards. The adapters are automatically recognized by my Linux Mint system and devices like */dev/ttyUSB0* are created.
 
@@ -28,4 +32,15 @@ My approach to see what the communication pattern between the touch screen and t
 ## Check 1: connect the touch screen to Linux
 
 
+I use the Linux tool *screen* to connect to the TTL device and see what happens. The command I tried is:
 
+`sudo screen /dev/ttyUSB0 115200,cs8`
+
+Luckily, the touch screen starts up right away and in the screen program I can see that the display send the following string initially.
+```
+Code Block
+Test
+tetst
+
+```
+Test
