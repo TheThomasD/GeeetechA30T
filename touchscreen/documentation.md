@@ -151,8 +151,34 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Control|Speed|Fan off||`N-0 M106 P0 S0*10`|
 |Control|Speed|Fan up||same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
 |Control|Speed|Fan down||same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
-|**Printing**|||||
+|**Printing**||||`N-0 M105*10 N-0 M20 LCD*87`|
+|Printing|||all buttons|buttons did not have any effect|
 |**Setting**|||||
+|Setting|**Add-on**|||`N-0 M2139*55`|
+|Setting|Add-on||Sound on|`N-0 M2139 P0 S1*53`|
+|Setting|Add-on||Sound off|`N-0 M2139 P0 S0*52`|
+|Setting|Add-on||Backlight on|`N-0 M2139 P1 S1*52`|
+|Setting|Add-on||Backlight off|`N-0 M2139 P1 S0*53`|
+|Setting|Add-on||Backlight up (value depends on shown value 0-100)|`N-0 M2139 P1 E51*23`|
+|Setting|Add-on||Backlight down (value depends on shown value 0-100)|`N-0 M2139 P1 E50*22`|
+|Setting|Add-on||Screen lock on|`N-0 M2139 P2 S1*55` Note: screen lock is also stored in touch unit|
+|Setting|Add-on||Screen lock off|`N-0 M2139 P2 S0*54` Note: screen lock is also stored in touch unit|
+|Setting|Add-on||Screen lock PW (value depends on entered value, no leading zeros)|`N-0 M2139 P2 W1234*6` Note: screen lock is also stored in touch unit|
+|Setting|Add-on||Screen lock time (value depends on entered value)|`N-0 M2139 P2 E16*23` Note: screen lock is also stored in touch unit|
+|Setting|**Language**|||no effects|
+|Setting|**ScreenCali**|||no effects|
+|Setting|**About**|||`N-0 M115*11 N-0 N-0 M2134 FW:V1.02.xx*39` NOTE: 2nd and 3rd `N-0` are on the same line!|
+|Setting|**Factory Default**||||
+|Setting|Factory Default||yes|`N-0 M502*9`|
+|Setting|Factory Default||no|no effect (why should it?)|
+|Setting|**Detector**||||
+|Setting|Detector||on|`N-0 M2106 P0 S1*57`|
+|Setting|Detector||off|`N-0 M2106 P0 S0*56`|
 |**Bar chart button**||||`N-0 M105*10 N-0 M27*59`|
 |**Main menu button**||||return to top menu|
 |**Return button**||||return to previous screen|
+
+
+
+
+
