@@ -94,15 +94,43 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Control|Motion Param|Double z home offset|home-Z1 offset down|`N-0 M2011 P1 S-0.01*60`|
 |Control|Motion Param|Double z home offset|Rset|`N-0 M2011 P0 S0*63 N-0 M2011 P1 S0*62`|
 |Control|**Leveling**||||
-|Control|Leveling|**Manual Leveling**||`N-0 M2107 S0*121`|
-|Control|Leveling|Manual Leveling|Z up 0.5|`N-0 M2107 S6*127`|
-|Control|Leveling|Manual Leveling|Z down 0.5|`N-0 M2107 S7*126`|
-|Control|Leveling|Manual Leveling|Z up 0.05|`N-0 M2107 S10*72`|
-|Control|Leveling|Manual Leveling|Z down 0.05|`N-0 M2107 S9*112`|
-|Control|Leveling|Manual Leveling|Pos. 1|`N-0 M2107 S1*120`|
-|Control|Leveling|Manual Leveling|Pos. 2|`N-0 M2107 S2*123`|
-|Control|Leveling|Manual Leveling|Pos. 3|`N-0 M2107 S3*122`|
-|Control|Leveling|Manual Leveling|Pos. 4|`N-0 M2107 S4*125`|
-|Control|Leveling|Manual Leveling|Pos. 5|`N-0 M2107 S5*124`|
-|Control|Leveling|Manual Leveling|OK|`N-0 M2107 S8*113`|
-|Control|Leveling|Manual Leveling|Return|`N-0 G1 F1000 Z10*25 N-0 G28*62 N-0 L101*15`|
+|Control|Leveling|**manual level**||`N-0 M2107 S0*121`|
+|Control|Leveling|manual level|Z up 0.5|`N-0 M2107 S6*127`|
+|Control|Leveling|manual level|Z down 0.5|`N-0 M2107 S7*126`|
+|Control|Leveling|manual level|Z up 0.05|`N-0 M2107 S10*72`|
+|Control|Leveling|manual level|Z down 0.05|`N-0 M2107 S9*112`|
+|Control|Leveling|manual level|Pos. 1|`N-0 M2107 S1*120`|
+|Control|Leveling|manual level|Pos. 2|`N-0 M2107 S2*123`|
+|Control|Leveling|manual level|Pos. 3|`N-0 M2107 S3*122`|
+|Control|Leveling|manual level|Pos. 4|`N-0 M2107 S4*125`|
+|Control|Leveling|manual level|Pos. 5|`N-0 M2107 S5*124`|
+|Control|Leveling|manual level|OK|`N-0 M2107 S8*113`|
+|Control|Leveling|manual level|Return|`N-0 G1 F1000 Z10*25 N-0 G28*62 N-0 L101*15`|
+|Control|Leveling|**auto-level**||`N-0 M2120 P5*122`|
+|Control|Leveling|auto-level|CAS|`N-0 M2120 P9 S0*53`|
+|Control|Leveling|auto-level|3D Touch|`N-0 M2120 P9 S1*52`|
+|Control|Leveling|auto-level|Auto-Level on|`N-0 M2120 P0 S1*61`|
+|Control|Leveling|auto-level|Auto-Level off|`N-0 M2120 P0 S0*60`|
+|Control|Leveling|auto-level|Measure|`N-0 M2120 P7 S0*59 N-0 M2120 P6*121`|
+|Control|Leveling|auto-level|3D Touch - Push-pin up|`N-0 M2120 P1 S0*61`|
+|Control|Leveling|auto-level|3D Touch - Push-pin down|`N-0 M2120 P1 S1*60`|
+|Control|Leveling|auto-level|3D Touch - Alarm release|`N-0 M2120 P1 S2*63`|
+|Control|Leveling|auto-level|switch to 0.10mm|`N-0 L2 S2*76`|
+|Control|Leveling|auto-level|switch to 0.05mm|`N-0 L2 S3*77`|
+|Control|Leveling|auto-level|switch to 10.0mm|`N-0 L2 S0*78`|
+|Control|Leveling|auto-level|switch to 1.00mm|`N-0 L2 S1*79`|
+|Control|Leveling|auto-level|CAS - up|no visible effect|
+|Control|Leveling|auto-level|CAS - down|no visible effect|
+|Control|Leveling|auto-level|3D Touch - up 10.0mm|`N-0 M2120 P3 S0*63`|
+|Control|Leveling|auto-level|3D Touch - down 10.0mm|`N-0 M2120 P4 S0*56`|
+|Control|Leveling|auto-level|3D Touch - up 1.00mm|`N-0 M2120 P3 S1*62`|
+|Control|Leveling|auto-level|3D Touch - down 1.00mm|`N-0 M2120 P4 S1*57`|
+|Control|Leveling|auto-level|3D Touch - up 0.10mm|`N-0 M2120 P3 S2*61`|
+|Control|Leveling|auto-level|3D Touch - down 0.10mm|`N-0 M2120 P4 S2*58`|
+|Control|Leveling|auto-level|3D Touch - up 0.05mm|`N-0 M2120 P3 S3*60`|
+|Control|Leveling|auto-level|3D Touch - down 0.05mm|`N-0 M2120 P4 S3*59`|
+|Control|Leveling|auto-level|Save (value was -0.50)|`N-0 M2120 P1 S2*63 N-0 M2120 P2 S-0.50*56`|
+
+
+
+
