@@ -93,3 +93,16 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Control|Motion Param|Double z home offset|home-Z1 offset up|`N-0 M2011 P1 S0.01*17`|
 |Control|Motion Param|Double z home offset|home-Z1 offset down|`N-0 M2011 P1 S-0.01*60`|
 |Control|Motion Param|Double z home offset|Rset|`N-0 M2011 P0 S0*63 N-0 M2011 P1 S0*62`|
+|Control|**Leveling**||||
+|Control|Leveling|**Manual Leveling**||`N-0 M2107 S0*121`|
+|Control|Leveling|Manual Leveling|Z up 0.5|`N-0 M2107 S6*127`|
+|Control|Leveling|Manual Leveling|Z down 0.5|`N-0 M2107 S7*126`|
+|Control|Leveling|Manual Leveling|Z up 0.05|`N-0 M2107 S10*72`|
+|Control|Leveling|Manual Leveling|Z down 0.05|`N-0 M2107 S9*112`|
+|Control|Leveling|Manual Leveling|Pos. 1|`N-0 M2107 S1*120`|
+|Control|Leveling|Manual Leveling|Pos. 2|`N-0 M2107 S2*123`|
+|Control|Leveling|Manual Leveling|Pos. 3|`N-0 M2107 S3*122`|
+|Control|Leveling|Manual Leveling|Pos. 4|`N-0 M2107 S4*125`|
+|Control|Leveling|Manual Leveling|Pos. 5|`N-0 M2107 S5*124`|
+|Control|Leveling|Manual Leveling|OK|`N-0 M2107 S8*113`|
+|Control|Leveling|Manual Leveling|Return|`N-0 G1 F1000 Z10*25 N-0 G28*62 N-0 L101*15`|
