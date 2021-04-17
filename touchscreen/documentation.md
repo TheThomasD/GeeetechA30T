@@ -10,4 +10,6 @@ Hence, I want to analyze the communication between the touch screen board and th
 
 ## General Information
 
-The screen has it's own board (see picture) and is labeled as *Smartto\_LCD 3.2 VER2.1 FR4 1.6mm 2019-10-31"*. The main processor is an ARM chip labeled *STM32F103 VET6*. This is the same processor as the main board has. The connector labeled as *J2* seems to be a serial connector as it is connected to the main board via that connector. There are 4 pins and on the main board the pins are labeled *5V*, *RX*, *TX* and *GND*. 
+The screen has it's own board (see picture) and is labeled as *Smartto\_LCD 3.2 VER2.1 FR4 1.6mm 2019-10-31"*. The main processor is an ARM chip labeled *STM32F103 VET6*. This is the same processor as the main board has.
+
+The connector labeled as *J2* seems to be a serial connector as it is connected to the main board via that connector. There are 4 pins and on the main board the pins are labeled *5V*, *RX*, *TX* and *GND* (see picture). The wires of the cable connecting the two ports are running straight. However, the connectors on each side are inverse (see picture).
