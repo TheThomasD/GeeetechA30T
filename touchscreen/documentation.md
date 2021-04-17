@@ -62,3 +62,34 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Control|Move||switch to 0.5mm steps|`N-0 L1 S3*78`|
 |Control|Move||switch to 0.1mm steps|`N-0 L1 S4*73`|
 |Control|Move||switch to 30mm steps|`N-0 L1 S0*77`|
+|Control|**Motion Param**||||
+|Control|Motion Param||Steps/mm|`N-0 M2140 S0*122`|
+|Control|Motion Param||Velocity|`N-0 M2140 S1*123`|
+|Control|Motion Param||Acceleration|`N-0 M2140 S2*120`|
+|Control|Motion Param||Jerk|`N-0 M2140 S3*121`|
+|Control|Motion Param||babystep|`N-0 M2140 S5*127`|
+|Control|Motion Param||Double z home offset|`N-0 M2140 S6*124`|
+|Control|Motion Param||Store settings|`N-0 M500*11`|
+|Control|Motion Param|**Steps/mm**|||
+|Control|Motion Param|Steps/mm|X-axis up|`N-0 M92 X1.00*82`|
+|Control|Motion Param|Steps/mm|X-axis down|nothing, maybe because no original value available|
+|Control|Motion Param|Steps/mm|Y-axis up|`N-0 M92 Y1.00*83`|
+|Control|Motion Param|Steps/mm|Y-axis down|nothing, maybe because no original value available|
+|Control|Motion Param|Steps/mm|Z-axis up|`N-0 M92 Z1.00*80`|
+|Control|Motion Param|Steps/mm|Z-axis down|nothing, maybe because no original value available|
+|Control|Motion Param|Steps/mm|E0-axis up|`N-0 M92 E1.00*79`|
+|Control|Motion Param|Steps/mm|E0-axis down|nothing, maybe because no original value available|
+|Control|Motion Param|Steps/mm|Rset|`N-0 M2140 R0*123`|
+|Control|Motion Param|**Velocity**||only display|
+|Control|Motion Param|**Acceleration**||only display|
+|Control|Motion Param|**Jerk**||only display|
+|Control|Motion Param|**babystep**|||
+|Control|Motion Param|babystep|babystep up|`N-0 M290 Z0.01*96`|
+|Control|Motion Param|babystep|babystep down|`N-0 M290 Z-0.01*77`|
+|Control|Motion Param|babystep|Rset|`N-0 M290 Z0*79`|
+|Control|Motion Param|**Double z home offset**|||
+|Control|Motion Param|Double z home offset|home-Z0 offset up|`N-0 M2011 P0 S0.01*16`|
+|Control|Motion Param|Double z home offset|home-Z0 offset down|`N-0 M2011 P0 S-0.01*61`|
+|Control|Motion Param|Double z home offset|home-Z1 offset up|`N-0 M2011 P1 S0.01*17`|
+|Control|Motion Param|Double z home offset|home-Z1 offset down|`N-0 M2011 P1 S-0.01*60`|
+|Control|Motion Param|Double z home offset|Rset|`N-0 M2011 P0 S0*63 N-0 M2011 P1 S0*62`|
