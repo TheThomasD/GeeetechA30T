@@ -10,9 +10,9 @@ Hence, I want to analyze the communication between the touch screen board and th
 
 ## General Information
 
-The screen has it's own board (see [picture](./Touch%20screen.JPG)) and is labeled as *Smartto\_LCD 3.2 VER2.1 FR4 1.6mm 2019-10-31"*.
+The screen has it's own board (see [picture](./Touch%20screen.JPG)) and is labeled as *"Smartto\_LCD 3.2 VER2.1 FR4 1.6mm 2019-10-31"*.
 
-The main processor is an ARM chip labeled *STM32F103 VET6*. This is the same processor as the main board has.
+The main processor is an ARM chip labeled *"STM32F103 VET6"*. This is the same processor as the main board has.
 
 The connector labeled as *J2* seems to be a serial connector as it is connected to the main board via that connector. There are 4 pins and on the main board the pins are labeled *5V*, *RX*, *TX* and *GND* (see [picture](./Touch%20screen%20connector%20on%20main%20board.JPG)). The wires of the cable connecting the two ports are running straight. However, the connectors on each side are inverse to each other (see [picture](./Connection%20cable.JPG)).
 
@@ -38,5 +38,27 @@ Then, I connect the other side of the cable with the display. Luckily, the touch
 
 `log Geeetech LCD OK`
 
-The touch screen is usable and for some actions that I do on the touch screen, message are sent from the display. The results are listed in the following table:
+The touch screen is usable and for some actions that I do on the touch screen, message are sent from the display. The results are listed in the following table (`N-0` indicates start of a line, I guess these will normally be counted up if the control board responds):
 
+|Menu L1|Menu L2|Menu L3|Button|Command sent|
+--- | --- | --- | --- | ---
+|**Control**|||||
+|Control|**Home**||||
+|Control|Home||Home all|`N-0 G28*62`|
+|Control|Home||Home X|`N-0 G28 X0*118`|
+|Control|Home||Home Y|`N-0 G28 Y0*119`|
+|Control|Home||Home Z|`N-0 G28 Z0*116`|
+|Control|**Move**||||
+|Control|Move||Enable|`N-0 M18*55`|
+|Control|Move||Disable|`N-0 M17*56 N-0 G28*62`|
+|Control|Move||X+ (30mm)|`N-0 G91*60 N-0 G1 F6000 X30.00*48 N-0 G90*61`|
+|Control|Move||X- (30mm)|`N-0 G91*60 N-0 G1 F6000 X-30.00*29 N-0 G90*61`|
+|Control|Move||Y+ (30mm)|`N-0 G91*60 N-0 G1 F6000 Y30.00*49 N-0 G90*61`|
+|Control|Move||Y- (30mm)|`N-0 G91*60 N-0 G1 F6000 Y-30.00*28 N-0 G90*61`|
+|Control|Move||Z+ (30mm)|`N-0 G91*60 N-0 G1 F500 Z30.00*1 N-0 G90*61`|
+|Control|Move||Z- (30mm)|`N-0 G91*60 N-0 G1 F500 Z-30.00*44 N-0 G90*61`|
+|Control|Move||switch to 10mm steps|`N-0 L1 S1*76`|
+|Control|Move||switch to 1mm steps|`N-0 L1 S2*79`|
+|Control|Move||switch to 0.5mm steps|`N-0 L1 S3*78`|
+|Control|Move||switch to 0.1mm steps|`N-0 L1 S4*73`|
+|Control|Move||switch to 30mm steps|`N-0 L1 S0*77`|
