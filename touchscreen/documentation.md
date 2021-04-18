@@ -325,11 +325,17 @@ Based on what I've seen already, these lines can be identified:
 ---|---|---|---
 |**L1**| |set stepping for move|
 |L1|S|0 = 30mm, 1 = 10mm, 2 = 1mm, 3 = 0.5mm, 4 = 0.1mm|
+|**L2**| |set stepping for auto leveling|
+|L2|S|0 = 10mm, 1 = 1mm, 2 = 0.1mm, 3 = 0.05mm|
+|**L101**| |*??? finished manual leveling?*|
 |**M2011**| |control babysteps|
 |M2011|P|0 = Z0, 1 = Z1|
 |M2011|S|offset value|
 |**M2107**| |manual leveling|
 |M2107|S|0 = start, 1 = go to pos 1 (RR), 2 = go to pos 2 (RL), 3 = go to pos 3 (FL), 4 = go to pos 4 (FR), 5 = go to pos 5 (C), 6 = Z up 0.5mm, 7 = Z down 0.5mm, 8 = save, 9 = Z down 0.05mm, 10 = Z up 0.05mm|
+|**M2120**| |auto leveling|
+|M2120|P| |
+|M2120|S| |
 |**M2134**| |send firmware version|
 |M2134|FW|the firmware version|
 |**M2140**| |control settings|
