@@ -187,3 +187,25 @@ I use the tool *"socat"* in Linux to connect the two ports and write two files t
 `sudo socat /dev/ttyUSB0,b115200,raw,echo=0 SYSTEM:'tee in.txt |socat - "/dev/ttyUSB1,b115200,raw,echo=0" |tee out.txt'`
 
 This opens the first TTL, sets it to 115200 baud, outputs it to system call that writes the data into the file `in.txt` and forwards the input as well to the second TTL device, setting 115200 baud as well, and captures the output that device into the file `out.txt`. This works out great. The only thing that would be even better is to have a timestamp in the file to see what output from the control board is related to which output from the touch screen.
+
+To do that, I try to change the output of each socket by passing it through the Linux `sed` tool (and some additional magic is required). Hence, my new command is
+
+`sudo socat /dev/ttyUSB0,b115200,raw,echo=0 SYSTEM:'sed -u -E \"s/^(.*)/echo \\\$(date +%T.%N) - \\1/\" | sh | tee in.txt | sed -u \"s/^.*?\-\W//\" | socat - "/dev/ttyUSB1,b115200,raw,echo=0" | tee out-orig.txt | sed -u -E -e \"s/;/#SEMICOLON#/g\" -e \"s/^(.*)/echo \\\$(date +%T.%N) - \\1/\" | sh | tee out.txt | sed -u -e \"s/#SEMICOLON#/;/g\" -e \"s/^.*?\-\W//\"'`
+
+What this does:
+
+1. get the data from the first TTL
+2. create a shell command that prepends a timestamp (e.g `echo $(date +%T.%N) - <original message>`)
+3. execute the shell command (`sh`) to get the message prepended with the current time (e.g. `15:15:12.123456789 - <original message>`)
+4. `tee` the timestamped output into the file `in.txt`
+5. remove the timestamp again so that the original message can be sent to the other TTL port
+6. send the message to the other port via STDIN with `socat`
+7. store the original data in the file `out-orig.txt` for later reference via `tee`
+7. replace all semicolons in the output with the text `#SEMICOLON#` (as these would otherwise make trouble with the `sh` tool) and prepare the shell command to prepend the timestamp as above
+8. execute `sh` to actually prepend the current timestamp
+9. store the timestamped into the file `out.txt`
+10. replace the `#SEMICOLON#` markers with actual semicolons again and remove the timestamp
+11. data is then sent to the first TTL
+
+The hacky solution with the `sh` command is required as `sed` does not execute commands in the replacement part multiple times, so always the same timestamp would be written. However, creating a script to evaluate the timestamp makes it necessary to remove/replace semicolons as they would interfere with the `sh` command. Anyway, the solution works and is good enough to see what is happening when.
+
