@@ -24,11 +24,10 @@ In the Geeetech Smartto repository on Github I saw that a serial port is configu
 
 My approach to see what the communication pattern between the touch screen and the control board is as follows:
 
-1. Connect the touch screen to Linux and see whether the display works at all. If this works out, check all the screens and see what output they produce.
-2. Connect the control board and the touch screen to the Linux system. Forward all messages from one input to the other and also record the communication to see what messages are exchanged.
+1. Connect the touch screen to Linux and see whether the display works at all. If this works out, check all the buttons on the screens and see what output they produce.
+2. Connect the control board and the touch screen to the Linux system via two TTL devices. Forward all messages from one device to the other and also record the communication to see what messages are exchanged.
 
 ## Check 1: connect the touch screen to Linux
-
 
 First, I unplug the cable from both boards. I connect the TTL adapter with the control board side of the cable. I connect the cables as they are described on the control board. Then, I use the Linux tool *screen* to connect to the TTL device and see what happens. The command I use is:
 
@@ -179,6 +178,12 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |**Return button**||||return to previous screen|
 
 
+## Check 2: Listen in on communication between touch screen and control board
 
+I use two TTL devices connected to my Linux system. One connects to the touch screen (as in the section before) and the other one connects to the control board. Hence, I have two devices: `/dev/ttyUSB0` and `/dev/ttyUSB1`. For, it doesn't matter which device is connected to which board as I'm just listening in on the connection and I already know what the messages from the touch screen look like.
 
+I use the tool *"socat"* in Linux to connect the two ports and write two files that contain the communication. The command that I use is
 
+`sudo socat /dev/ttyUSB0,b115200,raw,echo=0 SYSTEM:'tee in.txt |socat - "/dev/ttyUSB1,b115200,raw,echo=0" |tee out.txt'`
+
+This opens the first TTL, sets it to 115200 baud, outputs it to system call that writes the data into the file `in.txt` and forwards the input as well to the second TTL device, setting 115200 baud as well, and captures the output that device into the file `out.txt`. This works out great. The only thing that would be even better is to have a timestamp in the file to see what output from the control board is related to which output from the touch screen.
