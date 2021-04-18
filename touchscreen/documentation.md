@@ -41,35 +41,35 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 
 |Menu L1|Menu L2|Menu L3|Button|Command sent|
 --- | --- | --- | --- | ---
-|**Control**|||||
-|Control|**Home**||||
-|Control|Home||Home all|`N-0 G28*62`|
-|Control|Home||Home X|`N-0 G28 X0*118`|
-|Control|Home||Home Y|`N-0 G28 Y0*119`|
-|Control|Home||Home Z|`N-0 G28 Z0*116`|
-|Control|**Move**||||
-|Control|Move||Enable|`N-0 M18*55`|
-|Control|Move||Disable|`N-0 M17*56 N-0 G28*62`|
-|Control|Move||X+ (30mm)|`N-0 G91*60 N-0 G1 F6000 X30.00*48 N-0 G90*61`|
-|Control|Move||X- (30mm)|`N-0 G91*60 N-0 G1 F6000 X-30.00*29 N-0 G90*61`|
-|Control|Move||Y+ (30mm)|`N-0 G91*60 N-0 G1 F6000 Y30.00*49 N-0 G90*61`|
-|Control|Move||Y- (30mm)|`N-0 G91*60 N-0 G1 F6000 Y-30.00*28 N-0 G90*61`|
-|Control|Move||Z+ (30mm)|`N-0 G91*60 N-0 G1 F500 Z30.00*1 N-0 G90*61`|
-|Control|Move||Z- (30mm)|`N-0 G91*60 N-0 G1 F500 Z-30.00*44 N-0 G90*61`|
-|Control|Move||switch to 10mm steps|`N-0 L1 S1*76`|
-|Control|Move||switch to 1mm steps|`N-0 L1 S2*79`|
-|Control|Move||switch to 0.5mm steps|`N-0 L1 S3*78`|
-|Control|Move||switch to 0.1mm steps|`N-0 L1 S4*73`|
-|Control|Move||switch to 30mm steps|`N-0 L1 S0*77`|
-|Control|**Motion Param**||||
-|Control|Motion Param||Steps/mm|`N-0 M2140 S0*122`|
-|Control|Motion Param||Velocity|`N-0 M2140 S1*123`|
-|Control|Motion Param||Acceleration|`N-0 M2140 S2*120`|
-|Control|Motion Param||Jerk|`N-0 M2140 S3*121`|
-|Control|Motion Param||babystep|`N-0 M2140 S5*127`|
-|Control|Motion Param||Double z home offset|`N-0 M2140 S6*124`|
-|Control|Motion Param||Store settings|`N-0 M500*11`|
-|Control|Motion Param|**Steps/mm**|||
+|**Control**| | | | |
+|Control|**Home**| | | |
+|Control|Home| |Home all|`N-0 G28*62`|
+|Control|Home| |Home X|`N-0 G28 X0*118`|
+|Control|Home| |Home Y|`N-0 G28 Y0*119`|
+|Control|Home| |Home Z|`N-0 G28 Z0*116`|
+|Control|**Move**| | | |
+|Control|Move| |Enable|`N-0 M18*55`|
+|Control|Move| |Disable|`N-0 M17*56 N-0 G28*62`|
+|Control|Move| |X+ (30mm)|`N-0 G91*60 N-0 G1 F6000 X30.00*48 N-0 G90*61`|
+|Control|Move| |X- (30mm)|`N-0 G91*60 N-0 G1 F6000 X-30.00*29 N-0 G90*61`|
+|Control|Move| |Y+ (30mm)|`N-0 G91*60 N-0 G1 F6000 Y30.00*49 N-0 G90*61`|
+|Control|Move| |Y- (30mm)|`N-0 G91*60 N-0 G1 F6000 Y-30.00*28 N-0 G90*61`|
+|Control|Move| |Z+ (30mm)|`N-0 G91*60 N-0 G1 F500 Z30.00*1 N-0 G90*61`|
+|Control|Move| |Z- (30mm)|`N-0 G91*60 N-0 G1 F500 Z-30.00*44 N-0 G90*61`|
+|Control|Move| |switch to 10mm steps|`N-0 L1 S1*76`|
+|Control|Move| |switch to 1mm steps|`N-0 L1 S2*79`|
+|Control|Move| |switch to 0.5mm steps|`N-0 L1 S3*78`|
+|Control|Move| |switch to 0.1mm steps|`N-0 L1 S4*73`|
+|Control|Move| |switch to 30mm steps|`N-0 L1 S0*77`|
+|Control|**Motion Param**| | | |
+|Control|Motion Param| |Steps/mm|`N-0 M2140 S0*122`|
+|Control|Motion Param| |Velocity|`N-0 M2140 S1*123`|
+|Control|Motion Param| |Acceleration|`N-0 M2140 S2*120`|
+|Control|Motion Param| |Jerk|`N-0 M2140 S3*121`|
+|Control|Motion Param| |babystep|`N-0 M2140 S5*127`|
+|Control|Motion Param| |Double z home offset|`N-0 M2140 S6*124`|
+|Control|Motion Param| |Store settings|`N-0 M500*11`|
+|Control|Motion Param|**Steps/mm**| | |
 |Control|Motion Param|Steps/mm|X-axis up|`N-0 M92 X1.00*82`|
 |Control|Motion Param|Steps/mm|X-axis down|nothing, maybe because no original value available|
 |Control|Motion Param|Steps/mm|Y-axis up|`N-0 M92 Y1.00*83`|
@@ -79,21 +79,21 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Control|Motion Param|Steps/mm|E0-axis up|`N-0 M92 E1.00*79`|
 |Control|Motion Param|Steps/mm|E0-axis down|nothing, maybe because no original value available|
 |Control|Motion Param|Steps/mm|Rset|`N-0 M2140 R0*123`|
-|Control|Motion Param|**Velocity**||only display|
-|Control|Motion Param|**Acceleration**||only display|
-|Control|Motion Param|**Jerk**||only display|
-|Control|Motion Param|**babystep**|||
+|Control|Motion Param|**Velocity**| |only display|
+|Control|Motion Param|**Acceleration**| |only display|
+|Control|Motion Param|**Jerk**| |only display|
+|Control|Motion Param|**babystep**| | |
 |Control|Motion Param|babystep|babystep up|`N-0 M290 Z0.01*96`|
 |Control|Motion Param|babystep|babystep down|`N-0 M290 Z-0.01*77`|
 |Control|Motion Param|babystep|Rset|`N-0 M290 Z0*79`|
-|Control|Motion Param|**Double z home offset**|||
+|Control|Motion Param|**Double z home offset**| | |
 |Control|Motion Param|Double z home offset|home-Z0 offset up|`N-0 M2011 P0 S0.01*16`|
 |Control|Motion Param|Double z home offset|home-Z0 offset down|`N-0 M2011 P0 S-0.01*61`|
 |Control|Motion Param|Double z home offset|home-Z1 offset up|`N-0 M2011 P1 S0.01*17`|
 |Control|Motion Param|Double z home offset|home-Z1 offset down|`N-0 M2011 P1 S-0.01*60`|
 |Control|Motion Param|Double z home offset|Rset|`N-0 M2011 P0 S0*63 N-0 M2011 P1 S0*62`|
-|Control|**Leveling**||||
-|Control|Leveling|**manual level**||`N-0 M2107 S0*121`|
+|Control|**Leveling**| | | |
+|Control|Leveling|**manual level**| |`N-0 M2107 S0*121`|
 |Control|Leveling|manual level|Z up 0.5|`N-0 M2107 S6*127`|
 |Control|Leveling|manual level|Z down 0.5|`N-0 M2107 S7*126`|
 |Control|Leveling|manual level|Z up 0.05|`N-0 M2107 S10*72`|
@@ -105,7 +105,7 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Control|Leveling|manual level|Pos. 5|`N-0 M2107 S5*124`|
 |Control|Leveling|manual level|OK|`N-0 M2107 S8*113`|
 |Control|Leveling|manual level|Return|`N-0 G1 F1000 Z10*25 N-0 G28*62 N-0 L101*15`|
-|Control|Leveling|**auto-level**||`N-0 M2120 P5*122`|
+|Control|Leveling|**auto-level**| |`N-0 M2120 P5*122`|
 |Control|Leveling|auto-level|CAS|`N-0 M2120 P9 S0*53`|
 |Control|Leveling|auto-level|3D Touch|`N-0 M2120 P9 S1*52`|
 |Control|Leveling|auto-level|Auto-Level on|`N-0 M2120 P0 S1*61`|
@@ -129,53 +129,53 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Control|Leveling|auto-level|3D Touch - up 0.05mm|`N-0 M2120 P3 S3*60`|
 |Control|Leveling|auto-level|3D Touch - down 0.05mm|`N-0 M2120 P4 S3*59`|
 |Control|Leveling|auto-level|Save (value was -0.50)|`N-0 M2120 P1 S2*63 N-0 M2120 P2 S-0.50*56`|
-|Control|**Filament**||||
-|Control|Filament|Extruder 1||`N-0 M165 A1.0 B0.0 C0.0*67`|
-|Control|Filament|Extruder 2||`N-0 M165 A0.0 B1.0 C0.0*67`|
-|Control|Filament|Extruder 1||`N-0 M165 A0.0 B0.0 C1.0*67`|
-|Control|Filament|Hotend on||`N-0 M104 S200.0*84`|
-|Control|Filament|Hotend up||same as above, but with increased temp value|
-|Control|Filament|Hotend down||same as above, but with decreased temp value|
-|Control|Filament|Hotend off||`N-0 M104 S0.0*86`|
-|Control|Filament|Clean on||`N-0 M2105 S5*126`|
-|Control|Filament|Clean off||`N-0 M2105 S4*127`|
-|Control|Filament|Load on (depends on selected extruder, see above)||`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S2*121`|
-|Control|Filament|Load off||`N-0 M2105 S4*127`|
-|Control|Filament|Unload on (depends on selected extruder, see above)||`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S3*120`|
-|Control|Filament|Unload off||`N-0 M2105 S4*127`|
-|Control|**Speed**||||
-|Control|Speed|Speed up (sent value = shown value)||`N-0 M220 S1*76`|
-|Control|Speed|Speed down||no visible effect|
-|Control|Speed|Fan on||`N-0 M106 P0 S255*8`|
-|Control|Speed|Fan off||`N-0 M106 P0 S0*10`|
-|Control|Speed|Fan up||same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
-|Control|Speed|Fan down||same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
-|**Printing**||||`N-0 M105*10 N-0 M20 LCD*87`|
-|Printing|||all buttons|buttons did not have any effect|
-|**Setting**|||||
-|Setting|**Add-on**|||`N-0 M2139*55`|
-|Setting|Add-on||Sound on|`N-0 M2139 P0 S1*53`|
-|Setting|Add-on||Sound off|`N-0 M2139 P0 S0*52`|
-|Setting|Add-on||Backlight on|`N-0 M2139 P1 S1*52`|
-|Setting|Add-on||Backlight off|`N-0 M2139 P1 S0*53`|
-|Setting|Add-on||Backlight up (value depends on shown value 0-100)|`N-0 M2139 P1 E51*23`|
-|Setting|Add-on||Backlight down (value depends on shown value 0-100)|`N-0 M2139 P1 E50*22`|
-|Setting|Add-on||Screen lock on|`N-0 M2139 P2 S1*55` Note: screen lock is also stored in touch unit|
-|Setting|Add-on||Screen lock off|`N-0 M2139 P2 S0*54` Note: screen lock is also stored in touch unit|
-|Setting|Add-on||Screen lock PW (value depends on entered value, no leading zeros)|`N-0 M2139 P2 W1234*6` Note: screen lock is also stored in touch unit|
-|Setting|Add-on||Screen lock time (value depends on entered value)|`N-0 M2139 P2 E16*23` Note: screen lock is also stored in touch unit|
-|Setting|**Language**|||no effects|
-|Setting|**ScreenCali**|||no effects|
-|Setting|**About**|||`N-0 M115*11 N-0 N-0 M2134 FW:V1.02.xx*39` NOTE: 2nd and 3rd `N-0` are on the same line!|
-|Setting|**Factory Default**||||
-|Setting|Factory Default||yes|`N-0 M502*9`|
-|Setting|Factory Default||no|no effect (why should it?)|
-|Setting|**Detector**||||
-|Setting|Detector||on|`N-0 M2106 P0 S1*57`|
-|Setting|Detector||off|`N-0 M2106 P0 S0*56`|
-|**Bar chart button**||||`N-0 M105*10 N-0 M27*59`|
-|**Main menu button**||||return to top menu|
-|**Return button**||||return to previous screen|
+|Control|**Filament**| | | |
+|Control|Filament|Extruder 1| |`N-0 M165 A1.0 B0.0 C0.0*67`|
+|Control|Filament|Extruder 2| |`N-0 M165 A0.0 B1.0 C0.0*67`|
+|Control|Filament|Extruder 1| |`N-0 M165 A0.0 B0.0 C1.0*67`|
+|Control|Filament|Hotend on| |`N-0 M104 S200.0*84`|
+|Control|Filament|Hotend up| |same as above, but with increased temp value|
+|Control|Filament|Hotend down| |same as above, but with decreased temp value|
+|Control|Filament|Hotend off| |`N-0 M104 S0.0*86`|
+|Control|Filament|Clean on| |`N-0 M2105 S5*126`|
+|Control|Filament|Clean off| |`N-0 M2105 S4*127`|
+|Control|Filament|Load on (depends on selected extruder, see above)| |`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S2*121`|
+|Control|Filament|Load off| |`N-0 M2105 S4*127`|
+|Control|Filament|Unload on (depends on selected extruder, see above)| |`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S3*120`|
+|Control|Filament|Unload off| |`N-0 M2105 S4*127`|
+|Control|**Speed**| | | |
+|Control|Speed|Speed up (sent value = shown value)| |`N-0 M220 S1*76`|
+|Control|Speed|Speed down| |no visible effect|
+|Control|Speed|Fan on| |`N-0 M106 P0 S255*8`|
+|Control|Speed|Fan off| |`N-0 M106 P0 S0*10`|
+|Control|Speed|Fan up| |same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
+|Control|Speed|Fan down| |same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
+|**Printing**| | | |`N-0 M105*10 N-0 M20 LCD*87`|
+|Printing| | |all buttons|buttons did not have any effect|
+|**Setting**| | | | |
+|Setting|**Add-on**| | |`N-0 M2139*55`|
+|Setting|Add-on| |Sound on|`N-0 M2139 P0 S1*53`|
+|Setting|Add-on| |Sound off|`N-0 M2139 P0 S0*52`|
+|Setting|Add-on| |Backlight on|`N-0 M2139 P1 S1*52`|
+|Setting|Add-on| |Backlight off|`N-0 M2139 P1 S0*53`|
+|Setting|Add-on| |Backlight up (value depends on shown value 0-100)|`N-0 M2139 P1 E51*23`|
+|Setting|Add-on| |Backlight down (value depends on shown value 0-100)|`N-0 M2139 P1 E50*22`|
+|Setting|Add-on| |Screen lock on|`N-0 M2139 P2 S1*55` Note: screen lock is also stored in touch unit|
+|Setting|Add-on| |Screen lock off|`N-0 M2139 P2 S0*54` Note: screen lock is also stored in touch unit|
+|Setting|Add-on| |Screen lock PW (value depends on entered value, no leading zeros)|`N-0 M2139 P2 W1234*6` Note: screen lock is also stored in touch unit|
+|Setting|Add-on| |Screen lock time (value depends on entered value)|`N-0 M2139 P2 E16*23` Note: screen lock is also stored in touch unit|
+|Setting|**Language**| | |no effects|
+|Setting|**ScreenCali**| | |no effects|
+|Setting|**About**| | |`N-0 M115*11 N-0 N-0 M2134 FW:V1.02.xx*39` NOTE: 2nd and 3rd `N-0` are on the same line!|
+|Setting|**Factory Default**| | | |
+|Setting|Factory Default| |yes|`N-0 M502*9`|
+|Setting|Factory Default| |no|no effect (why should it?)|
+|Setting|**Detector**| | | |
+|Setting|Detector| |on|`N-0 M2106 P0 S1*57`|
+|Setting|Detector| |off|`N-0 M2106 P0 S0*56`|
+|**Bar chart button**| | | |`N-0 M105*10 N-0 M27*59`|
+|**Main menu button**| | | |return to top menu|
+|**Return button**| | | |return to previous screen|
 
 
 ## Check 2: Listen in on communication between touch screen and control board
@@ -249,14 +249,16 @@ N-0 L21 P0 S0*63
 
 Based on what I've seen already, these lines can be identified:
 
-|Code|Field|Meaning|
----|---|---
-|**L1**||sent to transmit position of X, Y and Z (and feedrate?)
+#### Sent from control board
+
+|Code|Field|Meaning|Answer|
+---|---|---|---
+|**L1**| |sent to transmit position of X, Y and Z (and feedrate?)
 |L1|X|X position|
 |L1|Y|Y position|
 |L1|Z|Z position|
 |L1|F|*???*|
-|**L2**||sent to transmit status of temperatures etc. (only on changes)|
+|**L2**| |sent to transmit status of temperatures etc. (only on changes)|
 |L2|B|Bed temperature (current / target / on/off)|
 |L2|T0|Extruder 0 temperature (current / target / on/off)|
 |L2|T1|*??? Extruder 1 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
@@ -266,7 +268,7 @@ Based on what I've seen already, these lines can be identified:
 |L2|F2|*???*|
 |L2|R|*???*|
 |L2|FR|*???*|
-|**L3**||regularly sent to transmit status (of what?)|
+|**L3**| |regularly sent to transmit status (of what?)|
 |L3|PS|*???*|
 |L3|VL|*???*|
 |L3|MT|*???*|
@@ -280,27 +282,27 @@ Based on what I've seen already, these lines can be identified:
 |L3|TM|*???*|
 |L3|LA|*???*|
 |L3|LC|*???*|
-|**L9**||sends information about the control board, shown in "about" screen|
+|**L9**| |sends information about the control board, shown in "about" screen|
 |L9|DN|Device name|
 |L9|DM|Device model|
 |L9|SN|Serial number|
 |L9|FV|Firmware version|
 |L9|PV|Print volume|
 |L9|HV|Hardware version|
-|**L18**||*???*|
+|**L18**| |*???*|
 |L18|P|*???*|
 |L18|S|*???*|
-|**L21**||sent with values `P0 S0` until display firmware version from touch screen could be retrieved, not sent afterwards|
+|**L21**| |sent with values `P0 S0` until display firmware version from touch screen could be retrieved, not sent afterwards|M2134|
 |L21|P|*???*|
 |L21|S|*???*|
-|**L22**||*???*|
+|**L22**| |*???*|
 |L22|MS|*???*|
 |L22|MR|*???*|
 |L22|SP|*???*|
 |L22|EP|*???*|
 |L22|SH|*???*|
 |L22|EH|*???*|
-|**L23**||*???*|
+|**L23**| |*???*|
 |L23|SE|*???*|
 |L23|BE|*???*|
 |L23|BP|*???*|
@@ -310,9 +312,25 @@ Based on what I've seen already, these lines can be identified:
 |L23|ST|*???*|
 |L23|HC|*???*|
 |L23|HO|*???*|
-|**L24**||*???*|
+|**L24**| |*???*|
 |L24|P|*???*|
 |L24|A|*???*|
 |L24|B|*???*|
 |L24|C|*???*|
 |L24|D|*???*|
+
+#### Sent from touch screen (non standard G-Code as per [this](https://marlinfw.org/meta/gcode/))
+
+|Code|Field|Meaning|Answer|
+---|---|---|---
+|**L1**| |set stepping for move|
+|L1|S|0 = 30mm, 1 = 10mm, 2 = 1mm, 3 = 0.5mm, 4 = 0.1mm|
+|**M2011**| |control babysteps|
+|M2011|P|0 = Z0, 1 = Z1|
+|M2011|S|offset value|
+|**M2107**| |manual leveling|
+|M2107|S|0 = start, 1 = go to pos 1 (RR), 2 = go to pos 2 (RL), 3 = go to pos 3 (FL), 4 = go to pos 4 (FR), 5 = go to pos 5 (C), 6 = Z up 0.5mm, 7 = Z down 0.5mm, 8 = save, 9 = Z down 0.05mm, 10 = Z up 0.05mm|
+|**M2134**| |send firmware version|
+|M2134|FW|the firmware version|
+|**M2140**| |control settings|
+|M2140|S|0 = steps/mm, 1 = velocity, 2 = acceleration, 3 = jerk, 4 = *???*, 5 = babysteps, 6 = double z home offset|
