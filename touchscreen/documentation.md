@@ -209,3 +209,74 @@ What this does:
 
 The hacky solution with the `sh` command is required as `sed` does not execute commands in the replacement part multiple times, so always the same timestamp would be written. However, creating a script to evaluate the timestamp makes it necessary to remove/replace semicolons as they would interfere with the `sh` command. Anyway, the solution works and is good enough to see what is happening when.
 
+### Startup sequence
+
+As already mentioned in the section about the touch screen commands, the first info the touch screen spits out is
+
+`log Geeetech LCD OK`
+
+This seems really to be a log message and I expect that the message is actually logged on the control board if logging is active. Nevertheless, it seems that the message is not required.
+
+When the control board is switched on, it sends out the following messages (I removed the serial number BTW):
+
+```
+N-0 L3 PS:0 VL:0 MT:0 FT:0 AL:1 ST:1 WF:0 MR:100 FN: PG:0 TM:0 LA:0 LC:0*5
+N-0 L1 X0.000 Y0.000 Z0.000 F0*13
+N-0 L2 B:0.0 /0.0 /0 T0:0.0 /0.0 /0 T1:0.0 /0.0 /0 T2:0.0 /0.0 /0 SD:1 F0:0 F2:50 R:100 FR:0*100
+N-0 L3 PS:0 VL:0 MT:0 FT:0 AL:1 ST:1 WF:0 MR:100 FN: PG:0 TM:0 LA:0 LC:0*5
+N-0 L9 DN:GEEETECH-A30T;DM:A30T;SN:<removed>;FV:V1.xx.03;PV:320.00 x 320.00 x 420.00;HV:V1.6;*6
+N-0 L22 MS:0 MR:100 SP:100 EP:100 SH:0.00 EH:0.00*63
+N-0 L24 P3 A7.00 B7.00 C0.50 D5.00*126
+N-0 L24 P3 A7.00 B7.00 C0.50 D5.00*126
+N-0 L24 P3 A7.00 B7.00 C0.50 D5.00*126
+N-0 L24 P3 A7.00 B7.00 C0.50 D5.00*126
+N-0 L23 SE:0 BE:1 BP:50 CE:0 HE:0 SP:0 ST:16 HC:0 HO:0*23
+N-0 L23 SE:0 BE:1 BP:50 CE:0 HE:0 SP:0 ST:16 HC:0 HO:0*23
+N-0 L2 B:27.2 /0.0 /0 T0:30.7 /0.0 /0 T1:89.6 /0.0 /0 T2:107.3 /0.0 /0 SD:1 F0:0 F2:50 R:100 FR:0*85
+N-0 L18 P26 S1*0
+N-0 L21 P0 S0*63
+N-0 L3 PS:0 VL:0 MT:0 FT:0 AL:1 ST:1 WF:0 MR:100 FN: PG:0 TM:0 LA:0 LC:0*5
+N-0 L21 P0 S0*63
+N-0 L21 P0 S0*63
+N-0 L3 PS:0 VL:0 MT:0 FT:0 AL:1 ST:1 WF:0 MR:100 FN: PG:0 TM:0 LA:0 LC:0*5
+N-0 L21 P0 S0*63
+N-0 L21 P0 S0*63
+N-0 L2 B:27.3 /0.0 /0 T0:29.0 /0.0 /0 T1:89.4 /0.0 /0 T2:107.4 /0.0 /0 SD:1 F0:0 F2:50 R:100 FR:0*94
+N-0 L3 PS:0 VL:0 MT:0 FT:0 AL:1 ST:1 WF:0 MR:100 FN: PG:0 TM:0 LA:0 LC:0*5
+N-0 L21 P0 S0*63
+[...]
+```
+
+Based on what I've seen already, these lines can be identified:
+
+|Code|Field|Meaning|
+---|---|---
+|**L1**||sent to transmit position of X, Y and Z (and feedrate?)
+|L1|X|X position|
+|L1|Y|Y position|
+|L1|Z|Z position|
+|L1|F|*???*|
+|**L2**||sent to transmit status of temperatures etc. (only on changes)|
+|L2|B|Bed temperature (current / target / on/off)|
+|L2|T0|Extruder 0 temperature (current / target / on/off)|
+|L2|T1|*??? Extruder 1 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
+|L2|T2|*??? Extruder 2 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
+|L2|SD|*???*|
+|L2|F0|*???*|
+|L2|F2|*???*|
+|L2|R|*???*|
+|L2|FR|*???*|
+|**L3**||regularly sent to transmit status (of what?)|
+|L3|PS|*???*|
+|L3|VL|*???*|
+|L3|MT|*???*|
+|L3|FT|*???*|
+|L3|AL|*???*|
+|L3|ST|*???*|
+|L3|WF|*???*|
+|L3|MR|*???*|
+|L3|FN|*???*|
+|L3|PG|*???*|
+|L3|TM|*???*|
+|L3|LA|*???*|
+|L3|LC|*???*|
