@@ -272,7 +272,7 @@ The `L21 P0 S0` command is repeated until the touch screen answers with its firm
 |L2|R|*???*|
 |L2|FR|*???*|
 |**L3**| |regularly sent to transmit status (of what?)|
-|L3|PS|*???*|
+|L3|PS|print status: 0 = not printing, 1 = printing, 2 = pause, 3 = *???*, 4 = done|
 |L3|VL|*???*|
 |L3|MT|*???*|
 |L3|FT|*???*|
@@ -280,11 +280,15 @@ The `L21 P0 S0` command is repeated until the touch screen answers with its firm
 |L3|ST|*???*|
 |L3|WF|*???*|
 |L3|MR|*???*|
-|L3|FN|*???*|
-|L3|PG|*???*|
+|L3|FN|file name|
+|L3|PG|progress (0-100 in %)|
 |L3|TM|*???*|
 |L3|LA|*???*|
 |L3|LC|*???*|
+|**L7**| |SD file list|
+|L7|begin file list|0 - start of the file list|
+|L7|P|0-indexed file list of the selected folder|
+|L7|end file list|0 - end of the file list|
 |**L9**| |sends information about the control board, shown in "about" screen|
 |L9|DN|Device name|
 |L9|DM|Device model|
@@ -292,6 +296,8 @@ The `L21 P0 S0` command is repeated until the touch screen answers with its firm
 |L9|FV|Firmware version|
 |L9|PV|Print volume|
 |L9|HV|Hardware version|
+|**L12**| |*??? P0 S0?*|
+|**L14**| |*??? seems to send messages to the touch screen*|
 |**L18**| |*???*|
 |L18|P|*???*|
 |L18|S|*???*|
@@ -334,6 +340,7 @@ The `L21 P0 S0` command is repeated until the touch screen answers with its firm
 |**M2011**| |control babysteps|
 |M2011|P|0 = Z0, 1 = Z1|
 |M2011|S|offset value|
+|**M2103**| |*??? something like "start print"?|
 |**M2105**| |filament stuff|
 |M2105|S|2 = load, 3 = unload, 4 = all motors off, 5 = cleaning on (cycle motors)|
 |**M2106**| |filament sensor|
