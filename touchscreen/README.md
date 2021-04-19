@@ -333,6 +333,8 @@ Based on what I've seen already, these lines can be identified:
 |M2011|S|offset value|
 |**M2105**| |filament stuff|
 |M2105|S|2 = load, 3 = unload, 4 = all motors off, 5 = cleaning on (cycle motors)|
+|**M2106**| |filament sensor|
+|M2106|P0|S0 = off, S1 = on|
 |**M2107**| |manual leveling|
 |M2107|S|0 = start, 1 = go to pos 1 (RR), 2 = go to pos 2 (RL), 3 = go to pos 3 (FL), 4 = go to pos 4 (FR), 5 = go to pos 5 (C), 6 = Z up 0.5mm, 7 = Z down 0.5mm, 8 = save, 9 = Z down 0.05mm, 10 = Z up 0.05mm|
 |**M2120**| |auto leveling|
@@ -347,5 +349,9 @@ Based on what I've seen already, these lines can be identified:
 |M2120|P9|select probing device: S0 = CAS, S1 = 3D Touch|
 |**M2134**| |send firmware version|
 |M2134|FW|the firmware version|
+|**M2139**| |add-on stuff|
+|M2139|P0|sound settings: S0 = off, S1 = on|
+|M2139|P1|backlight settings: S0 = off, S1 = on, E<value 0-100> = set brigthness|
+|M2139|P2|screen lock: S0 = off, S1 = on, W<4 digits> = set password, E<2 digits> = set lock time|
 |**M2140**| |control settings|
 |M2140|S|0 = steps/mm, 1 = velocity, 2 = acceleration, 3 = jerk, 4 = *???*, 5 = babysteps, 6 = double z home offset|
