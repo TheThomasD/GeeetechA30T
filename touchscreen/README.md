@@ -20,12 +20,15 @@ I bought three USB to TTL adapters (see [picture](./TTL%20FT232RL%20adapter.JPG)
 
 In the Geeetech Smartto repository on Github I saw that a serial port is configured to use 115200 baud. I will use that for testing and see whether that works out OK.
 
+In the following, many codes are postfixed with a star and a number, e.g. `*92`. I assume that these are some kind of check sum as they change based on the content of the message. I have to check on whether I can live without them or have to figure out what they do.
+
 ## Approach
 
 My approach to see what the communication pattern between the touch screen and the control board is as follows:
 
 1. Connect the touch screen to Linux and see whether the display works at all. If this works out, check all the buttons on the screens and see what output they produce.
 2. Connect the control board and the touch screen to the Linux system via two TTL devices. Forward all messages from one device to the other and also record the communication to see what messages are exchanged.
+3. Send messages to the touch screen and the control board and see whether the "check sums" are required or not, and if they are, find out, how they can be derived.
 
 ## Check 1: connect the touch screen to Linux
 
@@ -263,7 +266,7 @@ The `L21 P0 S0` command is repeated until the touch screen answers with its firm
 |L2|T0|Extruder 0 temperature (current / target / on/off)|
 |L2|T1|*??? Extruder 1 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
 |L2|T2|*??? Extruder 2 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
-|L2|SD|*???*|
+|L2|SD|1 = no SD card present, 0 = SD card present|
 |L2|F0|*???*|
 |L2|F2|*???*|
 |L2|R|*???*|
