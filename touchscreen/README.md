@@ -278,15 +278,15 @@ Examples can be found [here](Examples.md).
 |L3|VL|*???*|
 |L3|MT|motor tension: 0 = disabled, 1 = enabled|
 |L3|FT|filament sensor: 0 = off, 255 = on|
-|L3|AL|*???*|
+|L3|AL|*??? Alarm status for auto leveling sensor?*|
 |L3|ST|*???*|
 |L3|WF|*???*|
 |L3|MR|Mix ratio: seems to be a number between 100 (E0 active), 25600 (E1 active) and 6553600 (E2 active)|
 |L3|FN|file name|
 |L3|PG|progress (0-100 in %)|
-|L3|TM|*???*|
-|L3|LA|*???*|
-|L3|LC|*???*|
+|L3|TM|*??? time?*|
+|L3|LA|*??? Layer active?*|
+|L3|LC|*??? Layer count?*|
 |**L7**| |SD file list|
 |L7|begin file list|0 - start of the file list|
 |L7|P|0-indexed file list of the selected folder|
