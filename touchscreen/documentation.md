@@ -331,11 +331,20 @@ Based on what I've seen already, these lines can be identified:
 |**M2011**| |control babysteps|
 |M2011|P|0 = Z0, 1 = Z1|
 |M2011|S|offset value|
+|**M2105**| |filament stuff|
+|M2105|S|2 = load, 3 = unload, 4 = all motors off, 5 = cleaning on (cycle motors)|
 |**M2107**| |manual leveling|
 |M2107|S|0 = start, 1 = go to pos 1 (RR), 2 = go to pos 2 (RL), 3 = go to pos 3 (FL), 4 = go to pos 4 (FR), 5 = go to pos 5 (C), 6 = Z up 0.5mm, 7 = Z down 0.5mm, 8 = save, 9 = Z down 0.05mm, 10 = Z up 0.05mm|
 |**M2120**| |auto leveling|
-|M2120|P| |
-|M2120|S| |
+|M2120|P0|auto level on/off: S0 = off, S1 = on|
+|M2120|P1|3D Touch pin control: S0 = pin up, S1 = pin down, S2 = alarm release|
+|M2120|P2|store offset value: S = value|
+|M2120|P3|offset up: S0 = 10mm, S1 = 1mm , S2 = 0.1mm, S3 = 0.05mm|
+|M2120|P4|offset down: S0 = 10mm, S1 = 1mm , S2 = 0.1mm, S3 = 0.05mm|
+|M2120|P5|*??? init auto leveling?*|
+|M2120|P6|*??? maybe "measure"?*|
+|M2120|P7|*??? maybe with S0 "set offset to 0"?*|
+|M2120|P9|select probing device: S0 = CAS, S1 = 3D Touch|
 |**M2134**| |send firmware version|
 |M2134|FW|the firmware version|
 |**M2140**| |control settings|
