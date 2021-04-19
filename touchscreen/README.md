@@ -269,19 +269,19 @@ Examples can be found [here](Examples.md).
 |L2|T1|*??? Extruder 1 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
 |L2|T2|*??? Extruder 2 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
 |L2|SD|1 = no SD card present, 0 = SD card present|
-|L2|F0|*???*|
+|L2|F0|Cooling fan speed (values 0 - 100)|
 |L2|F2|*???*|
-|L2|R|*???*|
+|L2|R|Speed (values 10 - 800)|
 |L2|FR|*???*|
 |**L3**| |regularly sent to transmit status (of what?)|
 |L3|PS|print status: 0 = not printing, 1 = printing, 2 = pause, 3 = *???*, 4 = done|
 |L3|VL|*???*|
-|L3|MT|*???*|
-|L3|FT|*???*|
+|L3|MT|motor tension: 0 = disabled, 1 = enabled|
+|L3|FT|filament sensor: 0 = off, 255 = on|
 |L3|AL|*???*|
 |L3|ST|*???*|
 |L3|WF|*???*|
-|L3|MR|*???*|
+|L3|MR|Mix ratio: seems to be a number between 100 (E0 active), 25600 (E1 active) and 6553600 (E2 active)|
 |L3|FN|file name|
 |L3|PG|progress (0-100 in %)|
 |L3|TM|*???*|
@@ -300,35 +300,35 @@ Examples can be found [here](Examples.md).
 |L9|HV|Hardware version|
 |**L12**| |*??? P0 S0?*|
 |**L14**| |*??? seems to send messages to the touch screen*|
-|**L18**| |*???*|
-|L18|P|*???*|
-|L18|S|*???*|
+|**L18**| |*??? status messages?*|
+|L18|P26|SD card status: S0 = SD card in, S1 = SD card out|
 |**L21**| |sent with values `P0 S0` until display firmware version from touch screen could be retrieved, not sent afterwards|M2134|
 |L21|P|*???*|
 |L21|S|*???*|
-|**L22**| |*???*|
+|**L22**| |Push message for status values|
 |L22|MS|*???*|
-|L22|MR|*???*|
+|L22|MR|Mix ratio, *see L3 MR*|
 |L22|SP|*???*|
 |L22|EP|*???*|
 |L22|SH|*???*|
 |L22|EH|*???*|
-|**L23**| |*???*|
-|L23|SE|*???*|
-|L23|BE|*???*|
-|L23|BP|*???*|
-|L23|CE|*???*|
+|**L23**| |add-on status|
+|L23|SE|sound enabled: 0 = off, 1 = on|
+|L23|BE|backlight setting enabled: 0 = off, 1 = on|
+|L23|BP|backlight percent: value 1 - 100|
+|L23|CE|code enabled: 0 = disabled, 1 = enabled|
 |L23|HE|*???*|
-|L23|SP|*???*|
-|L23|ST|*???*|
+|L23|SP|set password: 4 digit value (no leading zeros)|
+|L23|ST|screen lock time: number in seconds (at least two digits)|
 |L23|HC|*???*|
 |L23|HO|*???*|
-|**L24**| |*???*|
-|L24|P|*???*|
-|L24|A|*???*|
-|L24|B|*???*|
-|L24|C|*???*|
-|L24|D|*???*|
+|**L24**| |info about settings|
+|L24|P0|steps/mm: A = X axis, B = Y axis, C = Z axis, D = extruder E0|
+|L24|P1|velocities (mm/s): A = X-VMax, B = Y-VMax, C = Z-VMax, D = E-VMax, E = VMin, F = VTravel|
+|L24|P2|accelerations (steps/s2): A = Accel, B = A-Retract, C = X-Max accel, D = Y-Max accel, E = Z-Max accel, F = E-Max accel|
+|L24|P3|jerks (mm/s): A = Vx-jerk, B = Vy-jerk, C = Vz-jerk, D = Ve-jerk|
+|L24|P5|babystep (mm): A = value|
+|L24|P6|double-z home offset: A = home-Z0 offset, B= home-Z1 offset
 
 #### Sent from touch screen (non standard G-Code as per [this](https://marlinfw.org/meta/gcode/))
 
