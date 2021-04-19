@@ -254,6 +254,8 @@ The `L21 P0 S0` command is repeated until the touch screen answers with its firm
 
 #### Sent from control board
 
+Examples can be found [here](Examples.md).
+
 |Code|Field|Meaning|Answer|
 ---|---|---|---
 |**L1**| |sent to transmit position of X, Y and Z (and feedrate?)
@@ -329,6 +331,8 @@ The `L21 P0 S0` command is repeated until the touch screen answers with its firm
 |L24|D|*???*|
 
 #### Sent from touch screen (non standard G-Code as per [this](https://marlinfw.org/meta/gcode/))
+
+Examples can be found [here](Examples.md).
 
 |Code|Field|Meaning|Answer|
 ---|---|---|---
