@@ -207,7 +207,7 @@ What this does:
 10. replace the `#SEMICOLON#` markers with actual semicolons again and remove the timestamp
 11. data is then sent to the first TTL
 
-The hacky solution with the `sh` command is required as `sed` does not execute commands in the replacement part multiple times, so always the same timestamp would be written. However, creating a script to evaluate the timestamp makes it necessary to remove/replace semicolons as they would interfere with the `sh` command. Anyway, the solution works and is good enough to see what is happening when.
+The hacky solution with the `sh` command is required as `sed` does not evaluate commands in the replacement part multiple times, so always the same timestamp would be written. However, creating a script to evaluate the timestamp makes it necessary to remove/replace semicolons as they would interfere with the `sh` command. Anyway, the solution works and is good enough to see what is happening when.
 
 ### Startup sequence
 
@@ -247,7 +247,7 @@ N-0 L21 P0 S0*63
 [...]
 ```
 
-Based on what I've seen already, these lines can be identified:
+The `L21 P0 S0` command is repeated until the touch screen answers with its firmware version. `L1`, `L2` and `L3` seem to be status messages that are sent either regularly (`L3`) or only when something changes. I'll now try to find out what the specific parameters of the messages mean. My findings about the codes and their parameters can be seen in the following two tables.
 
 #### Sent from control board
 
