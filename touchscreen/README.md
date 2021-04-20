@@ -262,7 +262,7 @@ Examples can be found [here](Examples.md).
 |L1|X|X position|
 |L1|Y|Y position|
 |L1|Z|Z position|
-|L1|F|*something like feed rate, e.g. is 1 if unloading, but also one if loading*|
+|L1|F|*something like feed rate, e.g. is 1 if unloading, but also 1 if loading*|
 |**L2**| |sent to transmit status of temperatures etc. (only on changes)|
 |L2|B|Bed temperature (current / target / on/off)|
 |L2|T0|Extruder 0 temperature (current / target / on/off)|
