@@ -135,6 +135,8 @@ N-0 L14 file select succeed!:a30tcube_colored.gco
 N-0 L18 P26 S0*1
 
 N-0 L18 P26 S1*0
+
+N-0 L18 P26 S12*50
 ```
 
 ### L21

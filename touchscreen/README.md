@@ -272,7 +272,7 @@ Examples can be found [here](Examples.md).
 |L2|F0|Cooling fan speed (values 0 - 100)|
 |L2|F2|*???*|
 |L2|R|Speed (values 10 - 800)|
-|L2|FR|*???*|
+|L2|FR|*something like feed rate, see L1*|
 |**L3**| |regularly sent to transmit status (of what?)|
 |L3|PS|print status: 0 = not printing, 1 = printing, 2 = pause, 3 = *???*, 4 = done|
 |L3|VL|*???*|
@@ -301,7 +301,7 @@ Examples can be found [here](Examples.md).
 |**L12**| |*??? P0 S0?*|
 |**L14**| |*??? seems to send messages to the touch screen*|
 |**L18**| |*??? status messages?*|
-|L18|P26|SD card status: S0 = SD card in, S1 = SD card out|
+|L18|P26|SD card status: S0 = SD card in, S1 = SD card out, S12 = *???*|
 |**L21**| |sent with values `P0 S0` until display firmware version from touch screen could be retrieved, not sent afterwards|M2134|
 |L21|P|*???*|
 |L21|S|*???*|
