@@ -334,7 +334,7 @@ Examples can be found [here](Examples.md).
 
 Examples can be found [here](Examples.md).
 
-Some definitions can also be found [in the Geeetech Github project](https://github.com/Geeetech3D/Smartto-Eclipse/blob/1a23e6d19976dcbc82589f8e1b547bf4a21a2fcb/STM32f103r/src/Command.c)
+Some definitions can also be found [in the Geeetech Github project](https://github.com/Geeetech3D/Smartto-Eclipse/blob/1a23e6d19976dcbc82589f8e1b547bf4a21a2fcb/STM32f103r/src/Command.c), however, not all of them are accurate (see e.g. filament sensor on/off).
 
 |Code|Field|Meaning|Answer|
 ---|---|---|---
