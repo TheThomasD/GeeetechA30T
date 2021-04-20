@@ -277,7 +277,7 @@ Examples can be found [here](Examples.md).
 |L3|PS|print status: 0 = not printing, 1 = printing, 2 = pause, 3 = *???*, 4 = done|
 |L3|VL|*???*|
 |L3|MT|motor tension: 0 = disabled, 1 = enabled|
-|L3|FT|filament sensor: 0 = on, 255 = off|
+|L3|FT|filament sensor: 0 = on (one sensor has no filament), 1 = on (all sensors detected filament), 255 = off|
 |L3|AL|auto leveling: 0 = off, 1 = on|
 |L3|ST|*???*|
 |L3|WF|*???*|
