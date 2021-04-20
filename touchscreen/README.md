@@ -268,10 +268,10 @@ Examples can be found [here](Examples.md).
 |L2|T0|Extruder 0 temperature (current / target / on/off)|
 |L2|T1|*??? Extruder 1 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
 |L2|T2|*??? Extruder 2 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
-|L2|SD|1 = no SD card present, 0 = SD card present|
-|L2|F0|Cooling fan speed (values 0 - 100)|
+|L2|SD|0 = SD card present, 1 = no SD card present|
+|L2|F0|cooling fan speed (values 0 - 100)|
 |L2|F2|*???*|
-|L2|R|Speed (values 10 - 800)|
+|L2|R|speed (values 10 - 800)|
 |L2|FR|*something like feed rate, see L1*|
 |**L3**| |regularly sent to transmit status (of what?)|
 |L3|PS|print status: 0 = not printing, 1 = printing, 2 = pause, 3 = *???*, 4 = done|
@@ -280,7 +280,7 @@ Examples can be found [here](Examples.md).
 |L3|FT|filament sensor: 0 = on (one sensor has no filament), 1 = on (all sensors detected filament), 255 = off|
 |L3|AL|auto leveling: 0 = off, 1 = on|
 |L3|ST|*???*|
-|L3|WF|*???*|
+|L3|WF|*??? wifi enabled?*|
 |L3|MR|Mix ratio: seems to be a number between 100 (E0 active), 25600 (E1 active) and 6553600 (E2 active)|
 |L3|FN|file name|
 |L3|PG|print progress (0-100 in %)|
@@ -334,14 +334,16 @@ Examples can be found [here](Examples.md).
 
 Examples can be found [here](Examples.md).
 
+Some definitions can also be found [in the Geeetech Github project](https://github.com/Geeetech3D/Smartto-Eclipse/blob/1a23e6d19976dcbc82589f8e1b547bf4a21a2fcb/STM32f103r/src/Command.c)
+
 |Code|Field|Meaning|Answer|
 ---|---|---|---
-|**L1**| |set stepping for move|
+|**L1**| |set stepping for manual move|
 |L1|S|0 = 30mm, 1 = 10mm, 2 = 1mm, 3 = 0.5mm, 4 = 0.1mm|
 |**L2**| |set stepping for auto leveling|
 |L2|S|0 = 10mm, 1 = 1mm, 2 = 0.1mm, 3 = 0.05mm|
 |**L101**| |*??? finished manual leveling?*|
-|**M2011**| |control babysteps|
+|**M2011**| |control double z home offset|
 |M2011|P|0 = Z0, 1 = Z1|
 |M2011|S|offset value|
 |**M2103**| |*??? something like "start/stop print"?|
