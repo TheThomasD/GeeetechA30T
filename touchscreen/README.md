@@ -258,11 +258,11 @@ Examples can be found [here](Examples.md).
 
 |Code|Field|Meaning|Answer|
 ---|---|---|---
-|**L1**| |sent to transmit position of X, Y and Z (and feedrate?)
+|**L1**| |sent to transmit position of X, Y and Z (and feed rate?)
 |L1|X|X position|
 |L1|Y|Y position|
 |L1|Z|Z position|
-|L1|F|*???*|
+|L1|F|*something like feed rate, e.g. is 1 if unloading, but also one if loading*|
 |**L2**| |sent to transmit status of temperatures etc. (only on changes)|
 |L2|B|Bed temperature (current / target / on/off)|
 |L2|T0|Extruder 0 temperature (current / target / on/off)|
@@ -277,16 +277,16 @@ Examples can be found [here](Examples.md).
 |L3|PS|print status: 0 = not printing, 1 = printing, 2 = pause, 3 = *???*, 4 = done|
 |L3|VL|*???*|
 |L3|MT|motor tension: 0 = disabled, 1 = enabled|
-|L3|FT|filament sensor: 0 = off, 255 = on|
-|L3|AL|*??? Alarm status for auto leveling sensor?*|
+|L3|FT|filament sensor: 0 = on, 255 = off|
+|L3|AL|auto leveling: 0 = off, 1 = on|
 |L3|ST|*???*|
 |L3|WF|*???*|
 |L3|MR|Mix ratio: seems to be a number between 100 (E0 active), 25600 (E1 active) and 6553600 (E2 active)|
 |L3|FN|file name|
-|L3|PG|progress (0-100 in %)|
-|L3|TM|*??? time?*|
-|L3|LA|*??? Layer active?*|
-|L3|LC|*??? Layer count?*|
+|L3|PG|print progress (0-100 in %)|
+|L3|TM|seconds since start of print|
+|L3|LA|active layer of current print|
+|L3|LC|layer count of current file|
 |**L7**| |SD file list|
 |L7|begin file list|0 - start of the file list|
 |L7|P|0-indexed file list of the selected folder|
@@ -344,7 +344,7 @@ Examples can be found [here](Examples.md).
 |**M2011**| |control babysteps|
 |M2011|P|0 = Z0, 1 = Z1|
 |M2011|S|offset value|
-|**M2103**| |*??? something like "start print"?|
+|**M2103**| |*??? something like "start/stop print"?|
 |**M2105**| |filament stuff|
 |M2105|S|2 = load, 3 = unload, 4 = all motors off, 5 = cleaning on (cycle motors)|
 |**M2106**| |filament sensor|
