@@ -371,3 +371,15 @@ Some definitions can also be found [in the Geeetech Github project](https://gith
 |M2139|P2|screen lock: S0 = off, S1 = on, W<4 digits> = set password, E<2 digits> = set lock time|
 |**M2140**| |control settings|
 |M2140|S|0 = steps/mm, 1 = velocity, 2 = acceleration, 3 = jerk, 4 = *???*, 5 = babysteps, 6 = double z home offset|
+
+## Check 3: Send some commands directly to the touchscreen
+
+To get this to work I had to play around a little bit with different commands as I could not figure out at first why I couldn't communicate with the touchscreen.
+Nevertheless, after some fiddeling around I found a way to send commands.
+I use the command `minicom` to send commands, however, I currently cannot just type them in but I have to type the commands including the newline in a text editor and copy them into minicom.
+I guess my CR/LF stuff is currently not working as expected.
+Nevertheless, copying and pasting the commands worked.
+One of the things I identified is that I have to send the command *including* the `N-0` part at the start *and* I have to add the `*<number here>` part as well.
+Hence, I think I have to figure out what the number at the end is.
+I guess it's just a simple checksum that has to be calculated as it is always the same if the command does not change.
+I'll look at my examples and try to figure out what the numbers mean.
