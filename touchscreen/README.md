@@ -383,3 +383,130 @@ One of the things I identified is that I have to send the command *including* th
 Hence, I think I have to figure out what the number at the end is.
 I guess it's just a simple checksum that has to be calculated as it is always the same if the command does not change.
 I'll look at my examples and try to figure out what the numbers mean.
+
+What I've found so far is that the number after the `*` never goes beyond 127, but it seems any number including 0 can show up there.
+I've extracted the following commands from my examples to have a basis for further analysis:
+
+```
+N-0 L24 P5 A0.03*0
+N-0 L24 P5 A0.12*0
+N-0 L24 P5 A0.21*0
+N-0 L24 P5 A0.30*0
+
+N-0 L24 P5 A0.02*1
+N-0 L24 P5 A0.13*1
+N-0 L24 P5 A0.20*1
+
+N-0 L24 P5 A0.01*2
+N-0 L24 P5 A0.10*2
+N-0 L24 P5 A0.23*2
+
+N-0 L24 P5 A0.00*3
+N-0 L24 P5 A0.11*3
+N-0 L24 P5 A0.22*3
+
+N-0 L24 P5 A0.07*4
+N-0 L24 P5 A0.16*4
+
+N-0 L24 P5 A0.06*5
+N-0 L24 P5 A0.17*5
+N-0 L24 P5 A0.24*5
+
+N-0 L24 P5 A0.05*6
+N-0 L24 P5 A0.14*6
+
+N-0 L24 P5 A0.04*7
+N-0 L24 P5 A0.15*7
+
+N-0 L24 P5 A0.09*10
+N-0 L24 P5 A0.18*10
+
+N-0 L24 P5 A0.08*11
+N-0 L24 P5 A0.19*11
+
+N-0 M2120 P9 S1*52
+N-0 M2120 P9 S0*53
+N-0 M2120 P7 S0*59
+N-0 M2120 P0 S0*60
+N-0 M2120 P1 S1*60
+N-0 M2120 P0 S1*61
+N-0 M2120 P1 S0*61
+
+N-0 M2120 P1 S2*63
+
+N-0 M2107 S10*72
+
+N-0 M2107 S9*112
+N-0 M2107 S8*113
+
+N-0 M2107 S1*120
+N-0 M2107 S0*121
+N-0 M2120 P6*121
+N-0 M2107 S3*122
+N-0 M2120 P5*122
+N-0 M2107 S2*123
+N-0 M2107 S4*125
+N-0 M2107 S7*126
+N-0 M2107 S6*127
+```
+
+I ordered the first few sorting by command:
+
+```
+N-0 L24 P5 A0.00*3
+N-0 L24 P5 A0.01*2
+N-0 L24 P5 A0.02*1
+N-0 L24 P5 A0.03*0
+N-0 L24 P5 A0.04*7
+N-0 L24 P5 A0.05*6
+N-0 L24 P5 A0.06*5
+N-0 L24 P5 A0.07*4
+N-0 L24 P5 A0.08*11
+N-0 L24 P5 A0.09*10
+N-0 L24 P5 A0.10*2
+N-0 L24 P5 A0.11*3
+N-0 L24 P5 A0.12*0
+N-0 L24 P5 A0.13*1
+N-0 L24 P5 A0.14*6
+N-0 L24 P5 A0.15*7
+N-0 L24 P5 A0.16*4
+N-0 L24 P5 A0.17*5
+N-0 L24 P5 A0.18*10
+N-0 L24 P5 A0.19*11
+N-0 L24 P5 A0.20*1
+N-0 L24 P5 A0.21*0
+N-0 L24 P5 A0.22*3
+N-0 L24 P5 A0.23*2
+N-0 L24 P5 A0.24*5
+N-0 L24 P5 A0.25*4
+N-0 L24 P5 A0.26*7
+N-0 L24 P5 A0.27*6
+N-0 L24 P5 A0.28*9
+N-0 L24 P5 A0.29*8
+N-0 L24 P5 A0.30*0
+N-0 L24 P5 A0.31*1
+N-0 L24 P5 A0.32*2
+N-0 L24 P5 A0.33*3
+N-0 L24 P5 A0.34*4
+N-0 L24 P5 A0.35*5
+N-0 L24 P5 A0.36*6
+N-0 L24 P5 A0.37*7
+N-0 L24 P5 A0.38*8
+N-0 L24 P5 A0.39*9
+N-0 L24 P5 A0.40*7
+```
+
+I also looked for the shortest entries I could find:
+
+```
+N-0 G28*62
+N-0 M27*59
+```
+
+Points that seems interesting:
+* since all numbers are lower than 128, maybe there is a modulo by 128 in there?
+* I can see from the sorted commands that although single character codes (in ascii) are increasing, the number at the end can increase or decrease independently
+* although the commands in the sorted list keep changing, their number does not go beyond 11
+
+Maybe one idea for further investigation:
+Send M117 commands to the printer via the USB port and see how these are passed on to the display?
