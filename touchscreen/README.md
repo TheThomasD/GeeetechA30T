@@ -511,7 +511,30 @@ Points that seems interesting:
 Maybe one idea for further investigation:
 Send M117 commands to the printer via the USB port and see how these are passed on to the display?
 
-After some googling I found [this](https://reprap.org/wiki/G-code#Checking) information.
+After some googling I found [this](https://reprap.org/wiki/G-code#Checking) information in the Reprap wiki.
 It seems, for g-code the characters are just combined using XOR.
 That could explain the strange behavior.
 I'll have to figure out the encoding now, try to calculate the checksum based on that and compare it with what I've seen in the examples.
+
+I've tested the described algorithm with the default ascii encoding and using XOR on that:
+Original line: `N-0 G28*62`
+G-code to build checksum for: `N-0 G28`
+
+Decimal [ascii](https://www.torsten-horn.de/techdocs/ascii.htm) values of the characters:
+```
+N = 78
+- = 45
+0 = 48
+  = 32 (space)
+G = 71
+2 = 50
+8 = 56
+```
+
+I put these decimal numbers into [this](https://toolslick.com/math/bitwise/xor-calculator) nice online XOR calculator and, tadaa, the decimal result ist `62` (as what was sent from the control board).
+The same worked out for the `N-0 M27*59` command.
+I haven't checked the others, but I'd expect them to work as well.
+Hence, to send some commands to the display manually I have to send the commands including the checksum.
+Now I also think I can understand why Geeetech prefixed all their lines with `N-0 `.
+The Reprap wiki entry linked above states that if you want checksums you need line numbers.
+I guess Geeetech wanted to have checksums to ensure correct transmission of commands but didn't want to keep track of line numbers.
