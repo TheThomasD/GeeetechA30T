@@ -510,3 +510,8 @@ Points that seems interesting:
 
 Maybe one idea for further investigation:
 Send M117 commands to the printer via the USB port and see how these are passed on to the display?
+
+After some googling I found [this](https://reprap.org/wiki/G-code#Checking) information.
+It seems, for g-code the characters are just combined using XOR.
+That could explain the strange behavior.
+I'll have to figure out the encoding now, try to calculate the checksum based on that and compare it with what I've seen in the examples.
