@@ -1,10 +1,8 @@
 # Geeetech A30T Touch Screen
 
-I have a Geeetech A30T printer with a Smartto board (that is what they call it, it's actually labeled *GTM32\_103\_V1*). It comes with a corresponding firmware from Geeetech.
+I got the information that the touch screen will not work together with the Marlin firmware. Although that is true for the time beeing I was able to build [Marlin for my A30T](https://github.com/TheThomasD/Marlin/tree/geeetech-A30T) and was also able to implement my own UI for the touch screen (ongoing, but will also show up on that branch). I really like to switch filaments or do the leveling via the touch screen, that is why I want to use the display. I also would like to avoid buying additional components or modify my complete printer by exchanging the board/display combination completely. 
 
-Unfortunately, the software is a little bit crappy in some aspects, e.g. it does not support some commands or supports only a limited subset. Hence, I want to upgrade to Marlin 2.x.
-
-However, I got the information that the touch screen will not work together with the Marlin firmware. Unfortunately I couldn't get Marlin to work as of now, but if I ever do I want to have the touch screen working as well. I really like to switch filaments or do the leveling via the touch screen. Unfortunately, the firmware of the is closed source, hence, I cannot analyze it by looking at the code. The (unfortunately incomplete) Smartto code that is available from Geeetech via Github does not explain much about the communication.
+Unfortunately, the firmware of the touch screen is closed source, hence, I cannot analyze it by looking at the code. The (incomplete) Smartto code that is available from Geeetech via Github ([here](https://github.com/Geeetech3D/Smartto-Eclipse) and [here](https://github.com/Geeetech3D/Smartto-IAR)) does not explain much about the communication.
 
 Hence, I want to analyze the communication between the touch screen board and the control board to be able to use it later on together with a version of Marlin.
 
@@ -12,7 +10,7 @@ Hence, I want to analyze the communication between the touch screen board and th
 
 The screen has it's own board (see [picture](./Touch%20screen.JPG)) and is labeled as *"Smartto\_LCD 3.2 VER2.1 FR4 1.6mm 2019-10-31"*.
 
-The main processor is an ARM chip labeled *"STM32F103 VET6"*. This is the same processor as the main board has.
+The main processor is an ARM chip labeled *"STM32F103 VET6"*. This is the same processor as the main board has. After investing some time in analyzing the main board I'm pretty convinced that it is possible to install a custom firmware. Nevertheless, that would mean developing one basically from scratch, which will maybe be a good idea if I find some spare time (i.e. most likely never). Until then, I'll stick with the original firmware.
 
 The connector labeled as *J2* seems to be a serial connector as it is connected to the main board via that connector. There are 4 pins and on the main board the pins are labeled *5V*, *RX*, *TX* and *GND* (see [picture](./Touch%20screen%20connector%20on%20main%20board.JPG)). The wires of the cable connecting the two ports are running straight. However, the connectors on each side are inverse to each other (see [picture](./Connection%20cable.JPG)).
 
@@ -176,10 +174,19 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Setting|**Detector**| | | |
 |Setting|Detector| |on|`N-0 M2106 P0 S1*57`|
 |Setting|Detector| |off|`N-0 M2106 P0 S0*56`|
-|**Bar chart button**| | | |`N-0 M105*10 N-0 M27*59`|
+|**Bar chart button**| | | |`N-0 M27*59`|
+|Bar chart button|**Mixer Button**| | | |
+|Bar chart button|Mixer Button| |Fixed ratio mixer on|`M2138 S1`|
+|Bar chart button|Mixer Button| |Fixed ratio mixer on|`M2138 S0`|
+|Bar chart button|Mixer Button| |Change mix *(see mixing ration below, example: 0%, 0%, 100%)*|`M2135 P6553600`|
+|Bar chart button|Mixer Button| |Template on|`M2138 S3`|
+|Bar chart button|Mixer Button| |Template off|`M2138 S0`|
+|Bar chart button|Mixer Button|Template start setting|Height *(height value sent)*|`M2137 C<value>`|
+|Bar chart button|Mixer Button|Template start setting|Color *(ratio sent)*|`M2137 A<ratio>`|
+|Bar chart button|Mixer Button|Template end setting|Height *(height value sent)*|`M2137 D<value>`|
+|Bar chart button|Mixer Button|Template end setting|Color *(ratio sent)*|`M2137 B<ratio>`|
 |**Main menu button**| | | |return to top menu|
 |**Return button**| | | |return to previous screen|
-
 
 ## Check 2: Listen in on communication between touch screen and control board
 
@@ -252,76 +259,108 @@ N-0 L21 P0 S0*63
 
 The `L21 P0 S0` command is repeated until the touch screen answers with its firmware version. `L1`, `L2` and `L3` seem to be status messages that are sent either regularly (`L3`) or only when something changes. I'll now try to find out what the specific parameters of the messages mean. My findings about the codes and their parameters can be seen in the following two tables.
 
-#### Sent from control board
+### Basic data exchange format description
 
-Examples can be found [here](Examples.md).
+I created this section and also extended the following ones based on the info provided in [this](https://github.com/MarlinFirmware/Marlin/issues/18086#issuecomment-886272862) issue comment. I took the PDF and translated it to [english](SmartoLCD-english.pdf) with Google translate.
+
+|Letter|Definition|
+---|---
+|**Lnnn**|Commands received by the touch screen|
+|**Pnnn**|Command parameters (e.g. file list file name)|
+|**Tnnn**|Command parameters, most likely only tool selection|
+|**Snnn**|Command parameters (e.g. temperature value)|
+|**Xnnn**|X axis coordinate in mm|
+|**Ynnn**|Y axis coordinate in mm|
+|**Znnn**|Z axis coordinate in mm|
+|**Fnnn**|Feedrate in mm/s|
+|**Ennn**|Length of extruded material in mm *(I've never ever seen this anywhere being used)*|
+
+Each command sent/received by the control unit or the display is prefixed with the line numer `N-0`, suffixed with a checksum `*nnn` and terminated with `\r\n`. The touch screen receives only `L` nessages, but sends out `G`, `L` and `M` messages. The `G` ones are mostly standard, `L` codes are all proprietary and `M` messages are mixed. In the latter case, the 3-digit codes seem standard and the proprietary ones seem to use 4-digit codes (look also [here](https://github.com/Geeetech3D/Smartto-Eclipse/blob/1a23e6d19976dcbc82589f8e1b547bf4a21a2fcb/STM32f103r/src/Command.c))
+
+### Sent from control board
+
+Examples can be found [here](Examples.md). According to the section above, the display only receives `L` commands.
 
 |Code|Field|Meaning|Answer|
 ---|---|---|---
-|**L1**| |sent to transmit position of X, Y and Z (and feed rate?)
-|L1|X|X position|
-|L1|Y|Y position|
-|L1|Z|Z position|
-|L1|F|*something like feed rate, e.g. is 1 if unloading, but also 1 if loading*|
+|**L1**| |sent to transmit position of X, Y and Z as well as feedrate|
+|L1|X|X position in mm|
+|L1|Y|Y position in mm|
+|L1|Z|Z position in mm|
+|L1|F|Feedrate in mm/s|
 |**L2**| |sent to transmit status of temperatures etc. (only on changes)|
 |L2|B|Bed temperature (current / target / on/off)|
 |L2|T0|Extruder 0 temperature (current / target / on/off)|
-|L2|T1|*??? Extruder 1 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
-|L2|T2|*??? Extruder 2 temperature (current / target / on/off) ??? strange values and machine has only one temp sensor for the hotend*|
-|L2|SD|0 = SD card present, 1 = no SD card present|
-|L2|F0|cooling fan speed (values 0 - 100)|
-|L2|F2|*???*|
-|L2|R|speed (values 10 - 800)|
-|L2|FR|*something like feed rate, see L1*|
-|**L3**| |regularly sent to transmit status (of what?)|
-|L3|PS|print status: 0 = not printing, 1 = printing, 2 = pause, 3 = *???*, 4 = done|
-|L3|VL|*???*|
+|L2|T1|Extruder 1 temperature (current / target /on/off) *(shows strange values, machine has only one extruder)*|
+|L2|T2|Extruder 2 temperature (current / target /on/off) *(shows strange values, machine has only one extruder)*|
+|L2|SD|0 = SD card present, 1 = no SD card present, 2 = SD card failed *(according to documentation also covers U-disk, but no idea what that is (USB disk?) and I don't need it)*|
+|L2|F0|Cooling fan speed (values 0 - 100)|
+|L2|F2|Motherboard fan speed *(from my research the fan runs at fixed speed and the only value ever provided is 50)*|
+|L2|R|Printin speed (values 10 - 800)|
+|L2|FR|Feedrate in mm/s|
+|**L3**| |transmit print status|
+|L3|PS|print status: 0 = idle, 1 = printing, 2 = paused, 3 = recovery, 4 = finished|
+|L3|VL|0 = printed from SD, 1 = printed from U-disk|
 |L3|MT|motor tension: 0 = disabled, 1 = enabled|
 |L3|FT|filament sensor: 0 = on (one sensor has no filament), 1 = on (all sensors detected filament), 255 = off|
 |L3|AL|auto leveling: 0 = off, 1 = on|
-|L3|ST|*???*|
-|L3|WF|*??? wifi enabled?*|
-|L3|MR|Mix ratio: seems to be a number between 100 (E0 active), 25600 (E1 active) and 6553600 (E2 active)|
+|L3|ST|Bed leveling sensor type: 0 = capacitive proximity switch, 1 = BLtouch|
+|L3|WF|Wifi exists: 0 = no, 1 = yes|
+|L3|MR|Mix ratio: a number between 100 (E0 active), 25600 (E1 active) and 6553600 (E2 active). Calculation: lower 7 bits = percent of E0, next 7 bits = percentage E1, upper 7 bits = percentage E2 (all decimal numbers; summing up to 100)|
 |L3|FN|file name|
 |L3|PG|print progress (0-100 in %)|
 |L3|TM|seconds since start of print|
 |L3|LA|active layer of current print|
 |L3|LC|layer count of current file|
-|**L7**| |SD file list|
-|L7|begin file list|0 - start of the file list|
+|**L4**| |Wifi status *(will not implement as I don't have the adapter)*|
+|**L5**| |Printing rate *(will not implement, haven't seen this, yet)*|
+|**L6**| |Fan status *(will not implement, haven't seen this, yet)*|
+|**L7**| |SD file list with multiple lines|
+|L7|begin file list:n|start of the file list: 0 = SD card|
 |L7|P|0-indexed file list of the selected folder|
-|L7|end file list|0 - end of the file list|
-|**L9**| |sends information about the control board, shown in "about" screen|
+|L7|end file list:n|end of the file list: 0 = SD card|
+|**L8**| |Upload file to screen *(will not implement, haven't seen this, yet)*|
+|**L9**| |sends information about the control board, shown in "about" screen. Parameters are semicolon-separated, not space separated|
 |L9|DN|Device name|
 |L9|DM|Device model|
 |L9|SN|Serial number|
 |L9|FV|Firmware version|
 |L9|PV|Print volume|
 |L9|HV|Hardware version|
+|**L10**| |Manual leveling result *(can have more parameters as per documentation, but I've never seen that)*|
+|L10|S|Z value|
+|**L11**| |Automatic leveling saved result|
+|L11|P|Always 0|
+|L11|S|Z offset|
 |**L12**| |*??? P0 S0?*|
-|**L14**| |*??? seems to send messages to the touch screen*|
-|**L18**| |*??? status messages?*|
-|L18|P26|SD card status: S0 = SD card in, S1 = SD card out, S12 = *???*|
-|**L21**| |sent with values `P0 S0` until display firmware version from touch screen could be retrieved, not sent afterwards|M2134|
-|L21|P|*???*|
-|L21|S|*???*|
-|**L22**| |Push message for status values|
+|**L13**| | Disk selection *(never seen, will not be implemented)*|
+|**L14**| |Send message to printing progress display|
+|**L15**| |Filament sensor switch result *(not used, but L3 is used instead)*|
+|**L16**| |Power-off resume functionality *(will not implement)*|
+|**L17**| |Reserved for motor movement result *(not used)*|
+|**L18**| |Error messages|
+|L18|P|Interface version *(only seen version 26 seen so far)*|
+|L18|S|Error code: 0 = no filament, 1 = SD card removed, 2 = resume print, 3 = file not found, 4 = nozzle heating, 5 = heating bed, 10 = could not open file, 11 = check motors, 12 = hotend too cold, 13 = hit print, 14 = close error *(not completely sure about the mapping, maybe there are even more, will have to try out)*|
+|**L19**| |Status for stepper control *(will not implement)*|
+|**L19**| |Update firmware *(will not implement as not used)*|
+|**L21**| |request display firmware version with `P0 S0`|M2134|
+|**L22**| |Status of mixing templates|
 |L22|MS|*???*|
 |L22|MR|Mix ratio, *see L3 MR*|
-|L22|SP|*???*|
-|L22|EP|*???*|
-|L22|SH|*???*|
-|L22|EH|*???*|
+|L22|SP|Start percentage|
+|L22|EP|End percentage|
+|L22|SH|Start height|
+|L22|EH|End height|
 |**L23**| |add-on status|
 |L23|SE|sound enabled: 0 = off, 1 = on|
 |L23|BE|backlight setting enabled: 0 = off, 1 = on|
 |L23|BP|backlight percent: value 1 - 100|
 |L23|CE|code enabled: 0 = disabled, 1 = enabled|
-|L23|HE|*???*|
+|L23|HE|Heater enabled *(not used)*|
 |L23|SP|set password: 4 digit value (no leading zeros)|
 |L23|ST|screen lock time: number in seconds (at least two digits)|
-|L23|HC|*???*|
-|L23|HO|*???*|
+|L23|HC|Heater center deviation *(not used)*|
+|L23|HO|Heater temperature offset *(not used)*|
 |**L24**| |info about settings|
 |L24|P0|steps/mm: A = X axis, B = Y axis, C = Z axis, D = extruder E0|
 |L24|P1|velocities (mm/s): A = X-VMax, B = Y-VMax, C = Z-VMax, D = E-VMax, E = VMin, F = VTravel|
@@ -330,47 +369,84 @@ Examples can be found [here](Examples.md).
 |L24|P5|babystep (mm): A = value|
 |L24|P6|double-z home offset: A = home-Z0 offset, B= home-Z1 offset
 
-#### Sent from touch screen (non standard G-Code as per [this](https://marlinfw.org/meta/gcode/))
+### Sent from touch screen (non standard G-Code as per [this](https://marlinfw.org/meta/gcode/))
 
 Examples can be found [here](Examples.md).
 
 Some definitions can also be found [in the Geeetech Github project](https://github.com/Geeetech3D/Smartto-Eclipse/blob/1a23e6d19976dcbc82589f8e1b547bf4a21a2fcb/STM32f103r/src/Command.c), however, not all of them are accurate (see e.g. filament sensor on/off).
 
-|Code|Field|Meaning|Answer|
+|Code|Field|Meaning|Expected answer|
 ---|---|---|---
 |**L1**| |set stepping for manual move|
 |L1|S|0 = 30mm, 1 = 10mm, 2 = 1mm, 3 = 0.5mm, 4 = 0.1mm|
 |**L2**| |set stepping for auto leveling|
 |L2|S|0 = 10mm, 1 = 1mm, 2 = 0.1mm, 3 = 0.05mm|
 |**L101**| |*??? finished manual leveling?*|
+|**M20**| |Get SD file list *(requires a specific answer)*|L7|
+|**M27, M2101**| |Request print status *(requires a specific answer)*|L3|
+|**M104, M105, M140**| |Get/set temperatures *(requires a specific answer)*|L2|
+|**M106**| |Set fan speed *(requires a specific answer)*|L6|
+|**M114, G1, G28**| |Get/set positions *(requires a specific answer)*|L1|
+|**M115**| |Get firmware info *(requires a specific answer)*|L9|
+|**M220**| |Set print rate *(requires a specific answer)*|L5|
 |**M2011**| |control double z home offset|
 |M2011|P|0 = Z0, 1 = Z1|
 |M2011|S|offset value|
+|**M2100**| |Trigger LCD firmware upgrade *(will not implement)*|
 |**M2103**| |*??? something like "start/stop print"?|
 |**M2105**| |filament stuff|
 |M2105|S|2 = load, 3 = unload, 4 = all motors off, 5 = cleaning on (cycle motors)|
 |**M2106**| |filament sensor|
 |M2106|P0|S0 = off, S1 = on|
 |**M2107**| |manual leveling|
-|M2107|S|0 = start, 1 = go to pos 1 (RR), 2 = go to pos 2 (RL), 3 = go to pos 3 (FL), 4 = go to pos 4 (FR), 5 = go to pos 5 (C), 6 = Z up 0.5mm, 7 = Z down 0.5mm, 8 = save, 9 = Z down 0.05mm, 10 = Z up 0.05mm|
+|M2107|S0|home and start|L10, `M2107 Z:%3.2f`|
+|M2107|S1|go to pos 1 (RR)|L10, `M2107 ok` or `M2107 fail`|
+|M2107|S2|go to pos 2 (RL)|L10, `M2107 ok` or `M2107 fail`|
+|M2107|S3|go to pos 3 (FL)|L10, `M2107 ok` or `M2107 fail`|
+|M2107|S4|go to pos 4 (FR)|L10, `M2107 ok` or `M2107 fail`|
+|M2107|S5|go to pos 5 (C)|L10, `M2107 ok` or `M2107 fail`|
+|M2107|S6|Z up 0.5mm|L10, `M2107 Z:%3.2f`|
+|M2107|S7|Z down 0.5mm|L10, `M2107 Z:%3.2f`|
+|M2107|S8|save|L10, `M2107 save success`|
+|M2107|S9|Z up 0.05mm|L10, `M2107 Z:%3.2f`|
+|M2107|S10|Z down 0.05mm|L10, `M2107 Z:%3.2f`|
+|M2107|S11|exit|L10|
+|**M2111**| |Motor movement *(never seen, will not implement)*|
+|**M2111**| |Disk selection instruction *(is this required for SD printing?)*|
 |**M2120**| |auto leveling|
-|M2120|P0|auto level on/off: S0 = off, S1 = on|
+|M2120|P0|auto level on/off: S0 = off, S1 = on|L11|
 |M2120|P1|3D Touch pin control: S0 = pin up, S1 = pin down, S2 = alarm release|
-|M2120|P2|store offset value: S = value|
-|M2120|P3|offset up: S0 = 10mm, S1 = 1mm , S2 = 0.1mm, S3 = 0.05mm|
-|M2120|P4|offset down: S0 = 10mm, S1 = 1mm , S2 = 0.1mm, S3 = 0.05mm|
-|M2120|P5|*??? init auto leveling?*|
-|M2120|P6|*??? maybe "measure"?*|
-|M2120|P7|*??? maybe with S0 "set offset to 0"?*|
+|M2120|P2|store offset value: S = value|L11|
+|M2120|P3|offset up: S0 = 10mm, S1 = 1mm , S2 = 0.1mm, S3 = 0.05mm|L1|
+|M2120|P4|offset down: S0 = 10mm, S1 = 1mm , S2 = 0.1mm, S3 = 0.05mm|L1|
+|M2120|P5|request Z offset|L11|
+|M2120|P6|S0 = move nozzle to center, S1 = move probe to center|L1|
+|M2120|P7|S0 = move nozzle to center and measure|L1|
 |M2120|P9|select probing device: S0 = CAS, S1 = 3D Touch|
+|**M2130**| |Power-off resume control *(will not implement)*|
+|**M2131**| |Configure Wifi *(will not implement)*|
+|**M2132**| |Adjusting stepper control *(will not implement)*|
+|**M2133**| |Abnormal situation *(not seen yet, will not implement)*|
 |**M2134**| |send firmware version|
-|M2134|FW|the firmware version|
+|M2134|FW:|the firmware version|
+|**M2135**| |set current mixing rate|L22|
+|M2135|P|Mixing rate bitfield as decimal *(see MR above)*|
+|**M2136**| |define mixing template *(not seen yet, will not be implemented)*|L22|
+|**M2137**| |set current mixing template *(I've never used this, will most likely not implement)*|L22|
+|M2137|A|Mixing ratio start *(see MR above)*|
+|M2137|B|Mixing ratio end *(see MR above)*|
+|M2137|C|Mixing start layer number|
+|M2137|A|Mixing end layer number|
+|**M2138**| |Set mixing mode|L22|
+|M2138|S|0 = off, 1 = fixed, 3 = template|
 |**M2139**| |add-on stuff|
 |M2139|P0|sound settings: S0 = off, S1 = on|
 |M2139|P1|backlight settings: S0 = off, S1 = on, E<value 0-100> = set brigthness|
 |M2139|P2|screen lock: S0 = off, S1 = on, W<4 digits> = set password, E<2 digits> = set lock time|
+|M2139|P3|Extruder temperature deiation *(not used)*|
 |**M2140**| |control settings|
 |M2140|S|0 = steps/mm, 1 = velocity, 2 = acceleration, 3 = jerk, 4 = *???*, 5 = babysteps, 6 = double z home offset|
+|**T0, T1, T2**| |Set tool *(requires a specific answer)*|L22|
 
 ## Check 3: Send some commands directly to the touchscreen
 
