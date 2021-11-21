@@ -436,7 +436,7 @@ Some definitions can also be found [in the Geeetech Github project](https://gith
 |M2137|A|Mixing ratio start *(see MR above)*|
 |M2137|B|Mixing ratio end *(see MR above)*|
 |M2137|C|Mixing start layer number|
-|M2137|A|Mixing end layer number|
+|M2137|D|Mixing end layer number|
 |**M2138**| |Set mixing mode|L22|
 |M2138|S|0 = off, 1 = fixed, 3 = template|
 |**M2139**| |add-on stuff|
