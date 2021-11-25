@@ -420,8 +420,8 @@ Some definitions can also be found [in the Geeetech Github project](https://gith
 |M2120|P3|offset up: S0 = 10mm, S1 = 1mm , S2 = 0.1mm, S3 = 0.05mm|L1|
 |M2120|P4|offset down: S0 = 10mm, S1 = 1mm , S2 = 0.1mm, S3 = 0.05mm|L1|
 |M2120|P5|request Z offset|L11|
-|M2120|P6|S0 = move nozzle to center, S1 = move probe to center|L1|
-|M2120|P7|S0 = move nozzle to center and measure|L1|
+|M2120|P6|move nozzle to center|L1|
+|M2120|P7|S0 = move probe to center and measure|L1|
 |M2120|P9|select probing device: S0 = CAS, S1 = 3D Touch|
 |**M2130**| |Power-off resume control *(will not implement)*|
 |**M2131**| |Configure Wifi *(will not implement)*|
