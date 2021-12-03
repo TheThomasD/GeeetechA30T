@@ -49,8 +49,8 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Control|Home| |Home Y|`N-0 G28 Y0*119`|
 |Control|Home| |Home Z|`N-0 G28 Z0*116`|
 |Control|**Move**| | | |
-|Control|Move| |Enable|`N-0 M18*55`|
-|Control|Move| |Disable|`N-0 M17*56 N-0 G28*62`|
+|Control|Move| |Enable|`N-0 M17*56 N-0 G28*62`|
+|Control|Move| |Disable|`N-0 M18*55`|
 |Control|Move| |X+ (30mm)|`N-0 G91*60 N-0 G1 F6000 X30.00*48 N-0 G90*61`|
 |Control|Move| |X- (30mm)|`N-0 G91*60 N-0 G1 F6000 X-30.00*29 N-0 G90*61`|
 |Control|Move| |Y+ (30mm)|`N-0 G91*60 N-0 G1 F6000 Y30.00*49 N-0 G90*61`|
