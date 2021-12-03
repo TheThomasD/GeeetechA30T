@@ -340,7 +340,7 @@ Examples can be found [here](Examples.md). According to the section above, the d
 |**L17**| |Reserved for motor movement result *(not used)*|
 |**L18**| |Error messages|
 |L18|P|Interface version *(only seen version 26 seen so far)*|
-|L18|S|Error code: 0 = no filament, 1 = SD card removed, 2 = resume print, 3 = file not found, 4 = nozzle heating, 5 = heating bed, 10 = could not open file, 11 = check motors, 12 = hotend too cold, 13 = hit print, 14 = close error *(not completely sure about the mapping, maybe there are even more, will have to try out)*|
+|L18|S|Error code: 0 = no filament, 1 = SD card removed, 2 = resume print?, 3 = file not found, 4 = hotend temperature abnormal, 5 = bed temperature abnormal, 6 & 7 = bed temperature abnormal, print job stopped, 8 & 9 = bed temperature abnormal, user should kill job, 10 = could not open file, 11 = 3Dtouch alarm (check an retry), 12 = hotend too cold to change filament, 13 = operation unavailable during print, 14 = terminate PID Autotune? (yes -> send M108 and M27 to board), 15 = wait for user to continue (ok -> send M0 to board) >=16 = empty message box with yes and no option|
 |**L19**| |Status for stepper control *(will not implement)*|
 |**L19**| |Update firmware *(will not implement as not used)*|
 |**L21**| |request display firmware version with `P0 S0`|M2134|
