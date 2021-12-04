@@ -306,7 +306,7 @@ Examples can be found [here](Examples.md). According to the section above, the d
 |L3|AL|auto leveling: 0 = off, 1 = on|
 |L3|ST|Bed leveling sensor type: 0 = capacitive proximity switch, 1 = BLtouch|
 |L3|WF|Wifi exists: 0 = no, 1 = yes|
-|L3|MR|Mix ratio: a number between 100 (E0 active), 25600 (E1 active) and 6553600 (E2 active). Calculation: lower 7 bits = percent of E0, next 7 bits = percentage E1, upper 7 bits = percentage E2 (all decimal numbers; summing up to 100)|
+|L3|MR|Mix ratio: a number between 100 (E0 active), 25600 (E1 active) and 6553600 (E2 active). Calculation: lower 8 bits = percent of E0, next 8 bits = percentage E1, upper 8 bits = percentage E2 (all decimal numbers; summing up to 100)|
 |L3|FN|file name|
 |L3|PG|print progress (0-100 in %)|
 |L3|TM|seconds since start of print|
