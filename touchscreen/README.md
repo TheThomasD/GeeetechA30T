@@ -281,14 +281,14 @@ Each command sent/received by the control unit or the display is prefixed with t
 
 Examples can be found [here](Examples.md). According to the section above, the display only receives `L` commands.
 
-|Code|Field|Meaning|Answer|
----|---|---|---
-|**L1**| |sent to transmit position of X, Y and Z as well as feedrate|
+|Code|Field|Meaning|Answer|Implemented|
+---|---|---|---|---
+|**L1**| |sent to transmit position of X, Y and Z as well as feedrate||yes|
 |L1|X|X position in mm|
 |L1|Y|Y position in mm|
 |L1|Z|Z position in mm|
 |L1|F|Feedrate in mm/s|
-|**L2**| |sent to transmit status of temperatures etc. (only on changes)|
+|**L2**| |sent to transmit status of temperatures etc. (only on changes)||yes|
 |L2|B|Bed temperature (current / target / on/off)|
 |L2|T0|Extruder 0 temperature (current / target / on/off)|
 |L2|T1|Extruder 1 temperature (current / target /on/off) *(shows strange values, machine has only one extruder)*|
@@ -298,7 +298,7 @@ Examples can be found [here](Examples.md). According to the section above, the d
 |L2|F2|Motherboard fan speed *(from my research the fan runs at fixed speed and the only value ever provided is 50)*|
 |L2|R|Printin speed (values 10 - 800)|
 |L2|FR|Feedrate in mm/s|
-|**L3**| |transmit print status|
+|**L3**| |transmit print status||yes|
 |L3|PS|print status: 0 = idle, 1 = printing, 2 = paused, 3 = recovery, 4 = finished|
 |L3|VL|0 = printed from SD, 1 = printed from U-disk|
 |L3|MT|motor tension: 0 = disabled, 1 = enabled|
@@ -312,38 +312,38 @@ Examples can be found [here](Examples.md). According to the section above, the d
 |L3|TM|seconds since start of print|
 |L3|LA|active layer of current print|
 |L3|LC|layer count of current file|
-|**L4**| |Wifi status *(will not implement as I don't have the adapter)*|
-|**L5**| |Printing rate *(will not implement, haven't seen this, yet)*|
-|**L6**| |Fan status *(will not implement, haven't seen this, yet)*|
+|**L4**| |Wifi status *(will not implement as I don't have the adapter)*||no|
+|**L5**| |Printing rate *(will not implement, haven't seen this, yet)*||no|
+|**L6**| |Fan status *(will not implement, haven't seen this, yet)*||no|
 |**L7**| |SD file list with multiple lines|
 |L7|begin file list:n|start of the file list: 0 = SD card|
 |L7|P|0-indexed file list of the selected folder|
 |L7|end file list:n|end of the file list: 0 = SD card|
-|**L8**| |Upload file to screen *(will not implement, haven't seen this, yet)*|
-|**L9**| |sends information about the control board, shown in "about" screen. Parameters are semicolon-separated, not space separated|
+|**L8**| |Upload file to screen *(will not implement, haven't seen this, yet)*||no|
+|**L9**| |sends information about the control board, shown in "about" screen. Parameters are semicolon-separated, not space separated||yes|
 |L9|DN|Device name|
 |L9|DM|Device model|
 |L9|SN|Serial number|
 |L9|FV|Firmware version|
 |L9|PV|Print volume|
 |L9|HV|Hardware version|
-|**L10**| |Manual leveling result *(can have more parameters as per documentation, but I've never seen that)*|
+|**L10**| |Manual leveling result *(can have more parameters as per documentation, but I've never seen that)*||yes|
 |L10|S|Z value|
-|**L11**| |Automatic leveling saved result|
+|**L11**| |Automatic leveling saved result||yes|
 |L11|P|Always 0|
 |L11|S|Z offset|
-|**L12**| |*??? P0 S0?*|
+|**L12**| |*??? P0 S0?*||no|
 |**L13**| | Disk selection *(never seen, will not be implemented)*|
-|**L14**| |Send message to printing progress display|
-|**L15**| |Filament sensor switch result *(not used, but L3 is used instead)*|
-|**L16**| |Power-off resume functionality *(will not implement)*|
-|**L17**| |Reserved for motor movement result *(not used)*|
-|**L18**| |Error messages|
+|**L14**| |Send message to printing progress display||yes|
+|**L15**| |Filament sensor switch result *(not used, but L3 is used instead)*||no|
+|**L16**| |Power-off resume functionality *(will not implement)*||no|
+|**L17**| |Reserved for motor movement result *(not used)*||no|
+|**L18**| |Error messages||yes|
 |L18|P|Interface version *(only seen version 26 seen so far)*|
 |L18|S|Error code: 0 = no filament, 1 = SD card removed, 2 = resume print?, 3 = file not found, 4 = hotend temperature abnormal, 5 = bed temperature abnormal, 6 & 7 = bed temperature abnormal, print job stopped, 8 & 9 = bed temperature abnormal, user should kill job, 10 = could not open file, 11 = 3Dtouch alarm (check and retry), 12 = hotend too cold to change filament, 13 = operation unavailable during print, 14 = terminate PID Autotune? (yes -> send M108 and M27 to board), 15 = wait for user to continue (ok -> send M0 to board) >=16 = empty message box with yes and no option|
-|**L19**| |Status for stepper control *(will not implement)*|
-|**L19**| |Update firmware *(will not implement as not used)*|
-|**L21**| |request display firmware version with `P0 S0`|M2134|
+|**L19**| |Status for stepper control *(will not implement)*||no|
+|**L20**| |Update firmware *(will not implement as not used)*||no|
+|**L21**| |request display firmware version with `P0 S0`|M2134|yes|
 |**L22**| |Status of mixing templates|
 |L22|MS|*???*|
 |L22|MR|Mix ratio, *see L3 MR*|
@@ -351,7 +351,7 @@ Examples can be found [here](Examples.md). According to the section above, the d
 |L22|EP|End percentage|
 |L22|SH|Start height|
 |L22|EH|End height|
-|**L23**| |add-on status|
+|**L23**| |add-on status||no|
 |L23|SE|sound enabled: 0 = off, 1 = on|
 |L23|BE|backlight setting enabled: 0 = off, 1 = on|
 |L23|BP|backlight percent: value 1 - 100|
@@ -361,7 +361,7 @@ Examples can be found [here](Examples.md). According to the section above, the d
 |L23|ST|screen lock time: number in seconds (at least two digits)|
 |L23|HC|Heater center deviation *(not used)*|
 |L23|HO|Heater temperature offset *(not used)*|
-|**L24**| |info about settings|
+|**L24**| |info about settings||yes|
 |L24|P0|steps/mm: A = X axis, B = Y axis, C = Z axis, D = extruder E0|
 |L24|P1|velocities (mm/s): A = X-VMax, B = Y-VMax, C = Z-VMax, D = E-VMax, E = VMin, F = VTravel|
 |L24|P2|accelerations (steps/s2): A = Accel, B = A-Retract, C = X-Max accel, D = Y-Max accel, E = Z-Max accel, F = E-Max accel|
