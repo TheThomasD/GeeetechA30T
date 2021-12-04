@@ -40,117 +40,117 @@ Then, I connect the other side of the cable with the display. Luckily, the touch
 
 The touch screen is usable and for some actions that I do on the touch screen, message are sent from the display. The results are listed in the following table (`N-0` indicates start of a line, I guess these will normally be counted up if the control board responds):
 
-|Menu L1|Menu L2|Menu L3|Button|Command sent|
---- | --- | --- | --- | ---
+|Menu L1|Menu L2|Menu L3|Button|Command sent|Implemented|
+--- | --- | --- | --- | --- | ---
 |**Control**| | | | |
 |Control|**Home**| | | |
-|Control|Home| |Home all|`N-0 G28*62`|
-|Control|Home| |Home X|`N-0 G28 X0*118`|
-|Control|Home| |Home Y|`N-0 G28 Y0*119`|
-|Control|Home| |Home Z|`N-0 G28 Z0*116`|
+|Control|Home| |Home all|`N-0 G28*62`|*native Gcode*|
+|Control|Home| |Home X|`N-0 G28 X0*118`|*native Gcode*|
+|Control|Home| |Home Y|`N-0 G28 Y0*119`|*native Gcode*|
+|Control|Home| |Home Z|`N-0 G28 Z0*116`|*native Gcode*|
 |Control|**Move**| | | |
-|Control|Move| |Enable|`N-0 M17*56 N-0 G28*62`|
-|Control|Move| |Disable|`N-0 M18*55`|
-|Control|Move| |X+ (30mm)|`N-0 G91*60 N-0 G1 F6000 X30.00*48 N-0 G90*61`|
-|Control|Move| |X- (30mm)|`N-0 G91*60 N-0 G1 F6000 X-30.00*29 N-0 G90*61`|
-|Control|Move| |Y+ (30mm)|`N-0 G91*60 N-0 G1 F6000 Y30.00*49 N-0 G90*61`|
-|Control|Move| |Y- (30mm)|`N-0 G91*60 N-0 G1 F6000 Y-30.00*28 N-0 G90*61`|
-|Control|Move| |Z+ (30mm)|`N-0 G91*60 N-0 G1 F500 Z30.00*1 N-0 G90*61`|
-|Control|Move| |Z- (30mm)|`N-0 G91*60 N-0 G1 F500 Z-30.00*44 N-0 G90*61`|
-|Control|Move| |switch to 10mm steps|`N-0 L1 S1*76`|
-|Control|Move| |switch to 1mm steps|`N-0 L1 S2*79`|
-|Control|Move| |switch to 0.5mm steps|`N-0 L1 S3*78`|
-|Control|Move| |switch to 0.1mm steps|`N-0 L1 S4*73`|
-|Control|Move| |switch to 30mm steps|`N-0 L1 S0*77`|
+|Control|Move| |Enable|`N-0 M17*56 N-0 G28*62`|*native Gcode*|
+|Control|Move| |Disable|`N-0 M18*55`|*native Gcode*|
+|Control|Move| |X+ (30mm)|`N-0 G91*60 N-0 G1 F6000 X30.00*48 N-0 G90*61`|*native Gcode*|
+|Control|Move| |X- (30mm)|`N-0 G91*60 N-0 G1 F6000 X-30.00*29 N-0 G90*61`|*native Gcode*|
+|Control|Move| |Y+ (30mm)|`N-0 G91*60 N-0 G1 F6000 Y30.00*49 N-0 G90*61`|*native Gcode*|
+|Control|Move| |Y- (30mm)|`N-0 G91*60 N-0 G1 F6000 Y-30.00*28 N-0 G90*61`|*native Gcode*|
+|Control|Move| |Z+ (30mm)|`N-0 G91*60 N-0 G1 F500 Z30.00*1 N-0 G90*61`|*native Gcode*|
+|Control|Move| |Z- (30mm)|`N-0 G91*60 N-0 G1 F500 Z-30.00*44 N-0 G90*61`|*native Gcode*|
+|Control|Move| |switch to 10mm steps|`N-0 L1 S1*76`|*not needed*|
+|Control|Move| |switch to 1mm steps|`N-0 L1 S2*79`|*not needed*|
+|Control|Move| |switch to 0.5mm steps|`N-0 L1 S3*78`|*not needed*|
+|Control|Move| |switch to 0.1mm steps|`N-0 L1 S4*73`|*not needed*|
+|Control|Move| |switch to 30mm steps|`N-0 L1 S0*77`|*not needed*|
 |Control|**Motion Param**| | | |
-|Control|Motion Param| |Steps/mm|`N-0 M2140 S0*122`|
-|Control|Motion Param| |Velocity|`N-0 M2140 S1*123`|
-|Control|Motion Param| |Acceleration|`N-0 M2140 S2*120`|
-|Control|Motion Param| |Jerk|`N-0 M2140 S3*121`|
-|Control|Motion Param| |babystep|`N-0 M2140 S5*127`|
-|Control|Motion Param| |Double z home offset|`N-0 M2140 S6*124`|
-|Control|Motion Param| |Store settings|`N-0 M500*11`|
+|Control|Motion Param| |Steps/mm|`N-0 M2140 S0*122`|*not needed*|
+|Control|Motion Param| |Velocity|`N-0 M2140 S1*123`|*not needed*|
+|Control|Motion Param| |Acceleration|`N-0 M2140 S2*120`|*not needed*|
+|Control|Motion Param| |Jerk|`N-0 M2140 S3*121`|*not needed*|
+|Control|Motion Param| |babystep|`N-0 M2140 S5*127`|*not needed*|
+|Control|Motion Param| |Double z home offset|`N-0 M2140 S6*124`|*not needed*|
+|Control|Motion Param| |Store settings|`N-0 M500*11`|*native Gcode*|
 |Control|Motion Param|**Steps/mm**| | |
-|Control|Motion Param|Steps/mm|X-axis up|`N-0 M92 X1.00*82`|
-|Control|Motion Param|Steps/mm|X-axis down|nothing, maybe because no original value available|
-|Control|Motion Param|Steps/mm|Y-axis up|`N-0 M92 Y1.00*83`|
-|Control|Motion Param|Steps/mm|Y-axis down|nothing, maybe because no original value available|
-|Control|Motion Param|Steps/mm|Z-axis up|`N-0 M92 Z1.00*80`|
-|Control|Motion Param|Steps/mm|Z-axis down|nothing, maybe because no original value available|
-|Control|Motion Param|Steps/mm|E0-axis up|`N-0 M92 E1.00*79`|
-|Control|Motion Param|Steps/mm|E0-axis down|nothing, maybe because no original value available|
-|Control|Motion Param|Steps/mm|Rset|`N-0 M2140 R0*123`|
+|Control|Motion Param|Steps/mm|X-axis up|`N-0 M92 X1.00*82`|*native Gcode*|
+|Control|Motion Param|Steps/mm|X-axis down|nothing, maybe because no original value available|*native Gcode*|
+|Control|Motion Param|Steps/mm|Y-axis up|`N-0 M92 Y1.00*83`|*native Gcode*|
+|Control|Motion Param|Steps/mm|Y-axis down|nothing, maybe because no original value available|*native Gcode*|
+|Control|Motion Param|Steps/mm|Z-axis up|`N-0 M92 Z1.00*80`|*native Gcode*|
+|Control|Motion Param|Steps/mm|Z-axis down|nothing, maybe because no original value available|*native Gcode*|
+|Control|Motion Param|Steps/mm|E0-axis up|`N-0 M92 E1.00*79`|*native Gcode*|
+|Control|Motion Param|Steps/mm|E0-axis down|nothing, maybe because no original value available|*native Gcode*|
+|Control|Motion Param|Steps/mm|Rset|`N-0 M2140 R0*123`|yes|
 |Control|Motion Param|**Velocity**| |only display|
 |Control|Motion Param|**Acceleration**| |only display|
 |Control|Motion Param|**Jerk**| |only display|
 |Control|Motion Param|**babystep**| | |
-|Control|Motion Param|babystep|babystep up|`N-0 M290 Z0.01*96`|
-|Control|Motion Param|babystep|babystep down|`N-0 M290 Z-0.01*77`|
-|Control|Motion Param|babystep|Rset|`N-0 M290 Z0*79`|
+|Control|Motion Param|babystep|babystep up|`N-0 M290 Z0.01*96`|yes|
+|Control|Motion Param|babystep|babystep down|`N-0 M290 Z-0.01*77`|yes|
+|Control|Motion Param|babystep|Rset|`N-0 M290 Z0*79`|yes|
 |Control|Motion Param|**Double z home offset**| | |
-|Control|Motion Param|Double z home offset|home-Z0 offset up|`N-0 M2011 P0 S0.01*16`|
-|Control|Motion Param|Double z home offset|home-Z0 offset down|`N-0 M2011 P0 S-0.01*61`|
-|Control|Motion Param|Double z home offset|home-Z1 offset up|`N-0 M2011 P1 S0.01*17`|
-|Control|Motion Param|Double z home offset|home-Z1 offset down|`N-0 M2011 P1 S-0.01*60`|
-|Control|Motion Param|Double z home offset|Rset|`N-0 M2011 P0 S0*63 N-0 M2011 P1 S0*62`|
+|Control|Motion Param|Double z home offset|home-Z0 offset up|`N-0 M2011 P0 S0.01*16`|yes|
+|Control|Motion Param|Double z home offset|home-Z0 offset down|`N-0 M2011 P0 S-0.01*61`|yes|
+|Control|Motion Param|Double z home offset|home-Z1 offset up|`N-0 M2011 P1 S0.01*17`|yes|
+|Control|Motion Param|Double z home offset|home-Z1 offset down|`N-0 M2011 P1 S-0.01*60`|yes|
+|Control|Motion Param|Double z home offset|Rset|`N-0 M2011 P0 S0*63 N-0 M2011 P1 S0*62`|yes|
 |Control|**Leveling**| | | |
-|Control|Leveling|**manual level**| |`N-0 M2107 S0*121`|
-|Control|Leveling|manual level|Z up 0.5|`N-0 M2107 S6*127`|
-|Control|Leveling|manual level|Z down 0.5|`N-0 M2107 S7*126`|
-|Control|Leveling|manual level|Z up 0.05|`N-0 M2107 S10*72`|
-|Control|Leveling|manual level|Z down 0.05|`N-0 M2107 S9*112`|
-|Control|Leveling|manual level|Pos. 1|`N-0 M2107 S1*120`|
-|Control|Leveling|manual level|Pos. 2|`N-0 M2107 S2*123`|
-|Control|Leveling|manual level|Pos. 3|`N-0 M2107 S3*122`|
-|Control|Leveling|manual level|Pos. 4|`N-0 M2107 S4*125`|
-|Control|Leveling|manual level|Pos. 5|`N-0 M2107 S5*124`|
-|Control|Leveling|manual level|OK|`N-0 M2107 S8*113`|
-|Control|Leveling|manual level|Return|`N-0 G1 F1000 Z10*25 N-0 G28*62 N-0 L101*15`|
-|Control|Leveling|**auto-level**| |`N-0 M2120 P5*122`|
-|Control|Leveling|auto-level|CAS|`N-0 M2120 P9 S0*53`|
-|Control|Leveling|auto-level|3D Touch|`N-0 M2120 P9 S1*52`|
-|Control|Leveling|auto-level|Auto-Level on|`N-0 M2120 P0 S1*61`|
-|Control|Leveling|auto-level|Auto-Level off|`N-0 M2120 P0 S0*60`|
-|Control|Leveling|auto-level|Measure|`N-0 M2120 P7 S0*59 N-0 M2120 P6*121`|
-|Control|Leveling|auto-level|3D Touch - Push-pin up|`N-0 M2120 P1 S0*61`|
-|Control|Leveling|auto-level|3D Touch - Push-pin down|`N-0 M2120 P1 S1*60`|
-|Control|Leveling|auto-level|3D Touch - Alarm release|`N-0 M2120 P1 S2*63`|
-|Control|Leveling|auto-level|switch to 0.10mm|`N-0 L2 S2*76`|
-|Control|Leveling|auto-level|switch to 0.05mm|`N-0 L2 S3*77`|
-|Control|Leveling|auto-level|switch to 10.0mm|`N-0 L2 S0*78`|
-|Control|Leveling|auto-level|switch to 1.00mm|`N-0 L2 S1*79`|
+|Control|Leveling|**manual level**| |`N-0 M2107 S0*121`|yes|
+|Control|Leveling|manual level|Z up 0.5|`N-0 M2107 S6*127`|yes|
+|Control|Leveling|manual level|Z down 0.5|`N-0 M2107 S7*126`|yes|
+|Control|Leveling|manual level|Z up 0.05|`N-0 M2107 S10*72`|yes|
+|Control|Leveling|manual level|Z down 0.05|`N-0 M2107 S9*112`|yes|
+|Control|Leveling|manual level|Pos. 1|`N-0 M2107 S1*120`|yes|
+|Control|Leveling|manual level|Pos. 2|`N-0 M2107 S2*123`|yes|
+|Control|Leveling|manual level|Pos. 3|`N-0 M2107 S3*122`|yes|
+|Control|Leveling|manual level|Pos. 4|`N-0 M2107 S4*125`|yes|
+|Control|Leveling|manual level|Pos. 5|`N-0 M2107 S5*124`|yes|
+|Control|Leveling|manual level|OK|`N-0 M2107 S8*113`|yes|
+|Control|Leveling|manual level|Return|`N-0 G1 F1000 Z10*25 N-0 G28*62 N-0 L101*15`|yes|
+|Control|Leveling|**auto-level**| |`N-0 M2120 P5*122`|yes|
+|Control|Leveling|auto-level|CAS|`N-0 M2120 P9 S0*53`|no|
+|Control|Leveling|auto-level|3D Touch|`N-0 M2120 P9 S1*52`|yes|
+|Control|Leveling|auto-level|Auto-Level on|`N-0 M2120 P0 S1*61`|yes|
+|Control|Leveling|auto-level|Auto-Level off|`N-0 M2120 P0 S0*60`|(yes, simulated)|
+|Control|Leveling|auto-level|Measure|`N-0 M2120 P7 S0*59 N-0 M2120 P6*121`|yes|
+|Control|Leveling|auto-level|3D Touch - Push-pin up|`N-0 M2120 P1 S0*61`|yes|
+|Control|Leveling|auto-level|3D Touch - Push-pin down|`N-0 M2120 P1 S1*60`|yes|
+|Control|Leveling|auto-level|3D Touch - Alarm release|`N-0 M2120 P1 S2*63`|yes|
+|Control|Leveling|auto-level|switch to 0.10mm|`N-0 L2 S2*76`|*not needed*|
+|Control|Leveling|auto-level|switch to 0.05mm|`N-0 L2 S3*77`|*not needed*|
+|Control|Leveling|auto-level|switch to 10.0mm|`N-0 L2 S0*78`|*not needed*|
+|Control|Leveling|auto-level|switch to 1.00mm|`N-0 L2 S1*79`|*not needed*|
 |Control|Leveling|auto-level|CAS - up|no visible effect|
 |Control|Leveling|auto-level|CAS - down|no visible effect|
-|Control|Leveling|auto-level|3D Touch - up 10.0mm|`N-0 M2120 P3 S0*63`|
-|Control|Leveling|auto-level|3D Touch - down 10.0mm|`N-0 M2120 P4 S0*56`|
-|Control|Leveling|auto-level|3D Touch - up 1.00mm|`N-0 M2120 P3 S1*62`|
-|Control|Leveling|auto-level|3D Touch - down 1.00mm|`N-0 M2120 P4 S1*57`|
-|Control|Leveling|auto-level|3D Touch - up 0.10mm|`N-0 M2120 P3 S2*61`|
-|Control|Leveling|auto-level|3D Touch - down 0.10mm|`N-0 M2120 P4 S2*58`|
-|Control|Leveling|auto-level|3D Touch - up 0.05mm|`N-0 M2120 P3 S3*60`|
-|Control|Leveling|auto-level|3D Touch - down 0.05mm|`N-0 M2120 P4 S3*59`|
-|Control|Leveling|auto-level|Save (value was -0.50)|`N-0 M2120 P1 S2*63 N-0 M2120 P2 S-0.50*56`|
+|Control|Leveling|auto-level|3D Touch - up 10.0mm|`N-0 M2120 P3 S0*63`|yes (but changed to 1.00mm)|
+|Control|Leveling|auto-level|3D Touch - down 10.0mm|`N-0 M2120 P4 S0*56`|yes|
+|Control|Leveling|auto-level|3D Touch - up 1.00mm|`N-0 M2120 P3 S1*62`|yes|
+|Control|Leveling|auto-level|3D Touch - down 1.00mm|`N-0 M2120 P4 S1*57`|yes|
+|Control|Leveling|auto-level|3D Touch - up 0.10mm|`N-0 M2120 P3 S2*61`|yes|
+|Control|Leveling|auto-level|3D Touch - down 0.10mm|`N-0 M2120 P4 S2*58`|yes|
+|Control|Leveling|auto-level|3D Touch - up 0.05mm|`N-0 M2120 P3 S3*60`|yes|
+|Control|Leveling|auto-level|3D Touch - down 0.05mm|`N-0 M2120 P4 S3*59`|yes|
+|Control|Leveling|auto-level|Save (value was -0.50)|`N-0 M2120 P1 S2*63 N-0 M2120 P2 S-0.50*56`|yes|
 |Control|**Filament**| | | |
-|Control|Filament|Extruder 1| |`N-0 M165 A1.0 B0.0 C0.0*67`|
-|Control|Filament|Extruder 2| |`N-0 M165 A0.0 B1.0 C0.0*67`|
-|Control|Filament|Extruder 1| |`N-0 M165 A0.0 B0.0 C1.0*67`|
-|Control|Filament|Hotend on| |`N-0 M104 S200.0*84`|
-|Control|Filament|Hotend up| |same as above, but with increased temp value|
-|Control|Filament|Hotend down| |same as above, but with decreased temp value|
-|Control|Filament|Hotend off| |`N-0 M104 S0.0*86`|
-|Control|Filament|Clean on| |`N-0 M2105 S5*126`|
-|Control|Filament|Clean off| |`N-0 M2105 S4*127`|
-|Control|Filament|Load on (depends on selected extruder, see above)| |`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S2*121`|
-|Control|Filament|Load off| |`N-0 M2105 S4*127`|
-|Control|Filament|Unload on (depends on selected extruder, see above)| |`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S3*120`|
-|Control|Filament|Unload off| |`N-0 M2105 S4*127`|
+|Control|Filament|Extruder 1| |`N-0 M165 A1.0 B0.0 C0.0*67`|*native Gcode*|
+|Control|Filament|Extruder 2| |`N-0 M165 A0.0 B1.0 C0.0*67`|*native Gcode*|
+|Control|Filament|Extruder 1| |`N-0 M165 A0.0 B0.0 C1.0*67`|*native Gcode*|
+|Control|Filament|Hotend on| |`N-0 M104 S200.0*84`|*native Gcode*|
+|Control|Filament|Hotend up| |same as above, but with increased temp value|*native Gcode*|
+|Control|Filament|Hotend down| |same as above, but with decreased temp value|*native Gcode*|
+|Control|Filament|Hotend off| |`N-0 M104 S0.0*86`|*native Gcode*|
+|Control|Filament|Clean on| |`N-0 M2105 S5*126`|yes|
+|Control|Filament|Clean off| |`N-0 M2105 S4*127`|yes|
+|Control|Filament|Load on (depends on selected extruder, see above)| |`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S2*121`|yes|
+|Control|Filament|Load off| |`N-0 M2105 S4*127`|yes|
+|Control|Filament|Unload on (depends on selected extruder, see above)| |`N-0 M165 A1.0 B0.0 C0.0*67 N-0 M2105 S3*120`|yes|
+|Control|Filament|Unload off| |`N-0 M2105 S4*127`|yes|
 |Control|**Speed**| | | |
-|Control|Speed|Speed up (sent value = shown value)| |`N-0 M220 S1*76`|
-|Control|Speed|Speed down| |no visible effect|
-|Control|Speed|Fan on| |`N-0 M106 P0 S255*8`|
-|Control|Speed|Fan off| |`N-0 M106 P0 S0*10`|
-|Control|Speed|Fan up| |same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
-|Control|Speed|Fan down| |same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|
+|Control|Speed|Speed up (sent value = shown value)| |`N-0 M220 S1*76`|*native Gcode*|
+|Control|Speed|Speed down| |no visible effect|*native Gcode*|
+|Control|Speed|Fan on| |`N-0 M106 P0 S255*8`|*native Gcode*|
+|Control|Speed|Fan off| |`N-0 M106 P0 S0*10`|*native Gcode*|
+|Control|Speed|Fan up| |same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|*native Gcode*|
+|Control|Speed|Fan down| |same as on/off, but with integers representing the requested speed (selected value 0-100 mapped to sent value 0-255)|*native Gcode*|
 |**Printing**| | | |`N-0 M105*10 N-0 M20 LCD*87`|
 |Printing| | |all buttons|buttons did not have any effect|
 |**Setting**| | | | |
@@ -167,18 +167,18 @@ The touch screen is usable and for some actions that I do on the touch screen, m
 |Setting|Add-on| |Screen lock time (value depends on entered value)|`N-0 M2139 P2 E16*23` Note: screen lock is also stored in touch unit|
 |Setting|**Language**| | |no effects|
 |Setting|**ScreenCali**| | |no effects|
-|Setting|**About**| | |`N-0 M115*11 N-0 N-0 M2134 FW:V1.02.xx*39` NOTE: 2nd and 3rd `N-0` are on the same line!|
+|Setting|**About**| | |`N-0 M115*11 N-0 N-0 M2134 FW:V1.02.xx*39` NOTE: 2nd and 3rd `N-0` are on the same line!|yes|
 |Setting|**Factory Default**| | | |
-|Setting|Factory Default| |yes|`N-0 M502*9`|
+|Setting|Factory Default| |yes|`N-0 M502*9`|*native Gcode*|
 |Setting|Factory Default| |no|no effect (why should it?)|
 |Setting|**Detector**| | | |
-|Setting|Detector| |on|`N-0 M2106 P0 S1*57`|
-|Setting|Detector| |off|`N-0 M2106 P0 S0*56`|
+|Setting|Detector| |on|`N-0 M2106 P0 S1*57`|yes|
+|Setting|Detector| |off|`N-0 M2106 P0 S0*56`|yes|
 |**Bar chart button**| | | |`N-0 M27*59`|
 |Bar chart button|**Mixer Button**| | | |
 |Bar chart button|Mixer Button| |Fixed ratio mixer on|`M2138 S1`|
 |Bar chart button|Mixer Button| |Fixed ratio mixer on|`M2138 S0`|
-|Bar chart button|Mixer Button| |Change mix *(see mixing ration below, example: 0%, 0%, 100%)*|`M2135 P6553600`|
+|Bar chart button|Mixer Button| |Change mix *(see mixing ration below, example: 0%, 0%, 100%)*|`M2135 P6553600`|yes|
 |Bar chart button|Mixer Button| |Template on|`M2138 S3`|
 |Bar chart button|Mixer Button| |Template off|`M2138 S0`|
 |Bar chart button|Mixer Button|Template start setting|Height *(height value sent)*|`M2137 C<value>`|
