@@ -89,7 +89,7 @@ Using a magnifying glass and a simple multimeter I basically followed the path o
 |92|PB6|Z1 DIR|Z1 axis stepper driver direction|
 |93|PB7|Z1-|Z1 min endstop|
 |95|PB8|E0 ENN|E0 stepper driver not-enable|
-|96|PD9|E0 STEP|E0 stepper driver stepping|
+|96|PB9|E0 STEP|E0 stepper driver stepping|
 |97|PE0|E0 DIR|E0 stepper driver direction|
 |98|PE1|FDE2|Filament detector E2|
 
